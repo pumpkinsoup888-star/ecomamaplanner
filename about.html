@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="favicon-32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — EcoMamaPlanner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#7A9E7E;--sage-light:#B8D4BB;--sage-pale:#EEF5EF;--forest:#2D5A35;--forest-dark:#1C3A21;--cream:#FAF8F4;--warm:#FFFFFF;--text-dark:#1A2E1C;--text-mid:#4A6B4E;--text-light:#7A9E7E;--border:#DDE8DE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(250,248,244,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--forest);text-decoration:none;}
+.logo span{color:var(--sage);}
+  .logo img{height:36px;width:auto;display:inline-block;vertical-align:middle;margin-right:8px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text-mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--forest);}
+.nav-cta{background:var(--forest);color:#fff;padding:10px 22px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;}
+.ad-bar{margin-top:80px;background:#f0f0f0;border-bottom:1px solid var(--border);text-align:center;padding:10px;font-size:11px;color:#aaa;letter-spacing:.05em;}
+
+/* HERO */
+.hero{padding:80px 48px 64px;background:linear-gradient(135deg,var(--forest-dark),var(--forest));color:white;text-align:center;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,60px);font-weight:300;line-height:1.1;margin-bottom:16px;}
+.hero h1 em{font-style:italic;color:var(--sage-light);}
+.hero p{font-size:16px;color:rgba(255,255,255,.65);max-width:520px;margin:0 auto;font-weight:300;line-height:1.75;}
+
+/* MISSION */
+.mission{padding:80px 48px;max-width:900px;margin:0 auto;text-align:center;}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:14px;}
+.mission h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);font-weight:300;color:var(--forest-dark);line-height:1.15;margin-bottom:20px;}
+.mission h2 em{font-style:italic;color:var(--sage);}
+.mission p{font-size:16px;color:var(--text-mid);font-weight:300;line-height:1.8;max-width:640px;margin:0 auto 16px;}
+
+/* VALUES */
+.values-section{background:var(--sage-pale);padding:80px 48px;}
+.values-inner{max-width:1100px;margin:0 auto;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.value-card{background:white;border:1px solid var(--border);border-radius:20px;padding:32px;transition:transform .2s,box-shadow .2s;}
+.value-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(45,90,53,.1);}
+.value-icon{font-size:36px;margin-bottom:16px;}
+.value-card h3{font-size:16px;font-weight:500;color:var(--text-dark);margin-bottom:10px;}
+.value-card p{font-size:14px;color:var(--text-mid);font-weight:300;line-height:1.7;}
+
+/* STORY */
+.story{padding:80px 48px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.story-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,42px);font-weight:300;color:var(--forest-dark);margin-bottom:20px;}
+.story-text h2 em{font-style:italic;color:var(--sage);}
+.story-text p{font-size:15px;color:var(--text-mid);font-weight:300;line-height:1.8;margin-bottom:14px;}
+.story-visual{background:linear-gradient(135deg,var(--forest-dark),var(--forest));border-radius:24px;padding:40px;color:white;}
+.story-stat{padding:20px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.story-stat:last-child{border-bottom:none;}
+.story-stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--sage-light);line-height:1;}
+.story-stat-label{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;font-weight:300;}
+
+/* WHAT WE OFFER */
+.offer{background:var(--forest-dark);padding:80px 48px;color:white;text-align:center;}
+.offer h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,46px);font-weight:300;margin-bottom:14px;}
+.offer h2 em{font-style:italic;color:var(--sage-light);}
+.offer p{font-size:15px;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 48px;font-weight:300;line-height:1.7;}
+.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto;}
+.offer-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 18px;transition:background .2s;}
+.offer-item:hover{background:rgba(255,255,255,.1);}
+.offer-item-icon{font-size:28px;margin-bottom:12px;}
+.offer-item h4{font-size:14px;font-weight:500;color:white;margin-bottom:6px;}
+.offer-item p{font-size:12px;color:rgba(255,255,255,.55);font-weight:300;line-height:1.5;}
+
+/* DISCLAIMER NOTE */
+.disclaimer-note{background:var(--warm);padding:48px;text-align:center;}
+.disc-box{background:#FFF8E8;border:1px solid #F0D890;border-radius:16px;padding:28px 32px;max-width:700px;margin:0 auto;}
+.disc-box h4{font-size:14px;font-weight:600;color:#7A5C00;margin-bottom:8px;}
+.disc-box p{font-size:13px;color:#8A6800;font-weight:300;line-height:1.7;}
+.disc-box a{color:var(--forest);font-weight:500;text-decoration:none;}
+
+/* CTA */
+.cta{padding:80px 48px;text-align:center;}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,48px);font-weight:300;color:var(--forest-dark);margin-bottom:16px;}
+.cta h2 em{font-style:italic;color:var(--sage);}
+.cta p{font-size:15px;color:var(--text-mid);font-weight:300;margin-bottom:32px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--forest);color:#fff;padding:15px 32px;border-radius:50px;font-size:14px;font-weight:500;text-decoration:none;transition:all .25s;display:inline-block;}
+.btn-primary:hover{background:var(--forest-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(45,90,53,.25);}
+.btn-secondary{background:transparent;color:var(--forest);border:1.5px solid var(--border);padding:15px 32px;border-radius:50px;font-size:14px;font-weight:500;text-decoration:none;transition:all .25s;display:inline-block;}
+.btn-secondary:hover{border-color:var(--sage);background:var(--sage-pale);}
+
+footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
+.footer-links{display:flex;gap:22px;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:rgba(255,255,255,.8);}
+
+@media(max-width:768px){
+  nav{padding:14px 18px;}.nav-links{display:none;}
+  .hero{padding:56px 18px 48px;}
+  .mission{padding:56px 18px;}
+  .values-section{padding:56px 18px;}
+  .values-grid{grid-template-columns:1fr;}
+  .story{grid-template-columns:1fr;padding:56px 18px;gap:32px;}
+  .offer{padding:56px 18px;}
+  .offer-grid{grid-template-columns:1fr 1fr;}
+  .cta{padding:56px 18px;}
+  footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYCKQ6JFES"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LYCKQ6JFES');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8309397117402042" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="logo.png" alt="EcoMamaPlanner logo">Eco<span>Mama</span>Planner</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#generator">Get my plan</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html" style="color:var(--forest);font-weight:500">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="index.html#generator" class="nav-cta">Create my plan →</a>
+</nav>
+
+<div class="ad-bar">ADVERTISEMENT — Google AdSense 728×90 leaderboard</div>
+
+<div class="hero">
+  <h1>We believe every mama<br>deserves a <em>greener</em> start</h1>
+  <p>EcoMamaPlanner was built for eco-conscious expecting mamas who want to prepare for their baby's arrival in a way that's kind to their family and the planet.</p>
+</div>
+
+<div class="mission">
+  <div class="section-label">Our mission</div>
+  <h2>Helping mamas plan <em>smarter,</em><br>live greener</h2>
+  <p>We created EcoMamaPlanner because we believe that preparing for a baby shouldn't mean drowning in information, overspending on things you don't need, or adding to the planet's waste problem.</p>
+  <p>Our free tools give every expecting mama — regardless of budget or background — access to a personalized, eco-conscious pregnancy plan that covers everything from week 1 to the day baby arrives.</p>
+</div>
+
+<div class="values-section">
+  <div class="values-inner">
+    <div class="section-label" style="text-align:center">What we stand for</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,42px);font-weight:300;color:var(--forest-dark);text-align:center;margin-bottom:0">Our values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <h3>Eco-first thinking</h3>
+        <p>Every recommendation we make considers its environmental impact. We believe small choices — from cloth nappies to solar night lights — add up to a big difference for our planet.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💚</div>
+        <h3>Accessibility for all</h3>
+        <p>Our core tools are free — always. We believe every mama, regardless of income, deserves access to good information and a thoughtful pregnancy plan.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🧠</div>
+        <h3>Whole-mama wellness</h3>
+        <p>Pregnancy is physical AND emotional. We cover mental health, anxiety, partner communication, and emotional wellbeing alongside nutrition and exercise — because all of it matters.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">☀️</div>
+        <h3>Solar-powered future</h3>
+        <p>We're passionate about solar energy as a practical, money-saving choice for families. Our solar nursery guide helps mamas reduce electricity bills from day one.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔒</div>
+        <h3>Privacy always</h3>
+        <p>Your personal information — your name, due date, health preferences — is never stored or shared. Your plan is generated privately in your browser and belongs only to you.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📄</div>
+        <h3>Transparency</h3>
+        <p>We are honest about how we earn (ads and affiliate links), how our content is produced (some AI-assisted), and what we are not (medical professionals). See our full <a href="disclaimer.html" style="color:var(--forest)">disclaimer</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="story">
+  <div class="story-text">
+    <h2>Why we built<br><em>EcoMamaPlanner</em></h2>
+    <p>Pregnancy is one of the most exciting — and overwhelming — experiences of a woman's life. Between doctor appointments, baby shower registries, nursery prep, and endless Google searches, it's easy to lose sight of what actually matters.</p>
+    <p>We built EcoMamaPlanner to cut through the noise. One website. One plan. Everything an eco-conscious mama needs to feel prepared, informed, and calm — from the first positive test to the hospital bag.</p>
+    <p>We also believe that choosing eco-friendly options shouldn't be complicated or expensive. Our guides make it simple to make greener choices that save money long-term — like cloth nappies, solar-powered nursery products, and natural baby skincare.</p>
+  </div>
+  <div class="story-visual">
+    <div class="story-stat">
+      <div class="story-stat-num">40</div>
+      <div class="story-stat-label">Weeks covered in every personalized plan</div>
+    </div>
+    <div class="story-stat">
+      <div class="story-stat-num">10+</div>
+      <div class="story-stat-label">Sections in every full PDF plan</div>
+    </div>
+    <div class="story-stat">
+      <div class="story-stat-num">$0</div>
+      <div class="story-stat-label">Cost to generate your free basic plan</div>
+    </div>
+    <div class="story-stat">
+      <div class="story-stat-num">6,000</div>
+      <div class="story-stat-label">Disposable nappies saved per child with cloth</div>
+    </div>
+  </div>
+</div>
+
+<div class="offer">
+  <h2>Everything we <em>offer</em></h2>
+  <p>Free tools, eco guides, and personalized resources — all in one place for expecting mamas.</p>
+  <div class="offer-grid">
+    <div class="offer-item">
+      <div class="offer-item-icon">📋</div>
+      <h4>Pregnancy planner</h4>
+      <p>Personalized week-by-week plan based on your due date and preferences.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-item-icon">📄</div>
+      <h4>PDF download</h4>
+      <p>Beautiful 7-page PDF plan to save, print, and share with your midwife or partner.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-item-icon">📝</div>
+      <h4>Eco pregnancy blog</h4>
+      <p>Articles on eco pregnancy, mental wellness, solar nursery, and budget tips.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-item-icon">☀️</div>
+      <h4>Solar nursery guide</h4>
+      <p>Product recommendations that run on solar power — zero ongoing electricity cost.</p>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer-note">
+  <div class="disc-box">
+    <h4>⚠️ Important note</h4>
+    <p>EcoMamaPlanner provides general pregnancy information for educational purposes only. We are not medical professionals and nothing on this site constitutes medical advice. Always consult your doctor, midwife, or qualified healthcare provider for personal health guidance. Read our full <a href="disclaimer.html">disclaimer and terms</a>.</p>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="section-label">Ready to start?</div>
+  <h2>Create your <em>free</em><br>pregnancy plan today</h2>
+  <p>No account needed. Ready in 3 minutes. Yours to keep.</p>
+  <div class="cta-btns">
+    <a href="index.html#generator" class="btn-primary">✨ Create my free plan</a>
+    <a href="blog.html" class="btn-secondary">Read the blog →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="EcoMamaPlanner" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;filter:brightness(0) invert(1) opacity(0.8);">EcoMamaPlanner</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+  <div style="font-size:12px">© 2026 EcoMamaPlanner.com — Made with 💚</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoMamaPlanner — Blog Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#7A9E7E;--sage-light:#B8D4BB;--sage-pale:#EEF5EF;--forest:#2D5A35;--forest-dark:#1C3A21;--cream:#FAF8F4;--warm:#FFFFFF;--text-dark:#1A2E1C;--text-mid:#4A6B4E;--text-light:#7A9E7E;--border:#DDE8DE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);}
+.private-bar{background:var(--forest);color:white;text-align:center;padding:10px;font-size:13px;font-weight:500;}
+.header{background:linear-gradient(135deg,#1C3A21,#2D5A35);padding:32px 48px;color:white;}
+.header h1{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;margin-bottom:6px;}
+.header h1 em{font-style:italic;color:#B8D4BB;}
+.header p{font-size:13px;color:rgba(255,255,255,.6);font-weight:300;}
+.container{max-width:900px;margin:0 auto;padding:40px 24px;}
+.instructions{background:linear-gradient(135deg,#1C3A21,#2D5A35);border-radius:20px;padding:28px;color:white;margin-bottom:24px;}
+.instructions h3{font-size:16px;font-weight:500;color:white;margin-bottom:14px;}
+.step{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.step-num{width:24px;height:24px;border-radius:50%;background:#B8D4BB;color:#1C3A21;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-text{font-size:13px;color:rgba(255,255,255,.75);font-weight:300;line-height:1.6;}
+.step-text strong{color:white;}
+.gen-card{background:white;border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px;}
+.gen-title{font-size:18px;font-weight:500;color:var(--text-dark);margin-bottom:6px;}
+.gen-sub{font-size:13px;color:var(--text-mid);font-weight:300;margin-bottom:24px;line-height:1.6;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:11px;font-weight:500;color:var(--text-mid);text-transform:uppercase;letter-spacing:.04em;}
+.fg select,.fg input{border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--text-dark);background:white;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s;-webkit-appearance:none;}
+.fg select:focus,.fg input:focus{border-color:#7A9E7E;}
+.btn-generate{width:100%;padding:14px;background:#2D5A35;color:white;border:none;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;margin-top:8px;}
+.btn-generate:hover{background:#1C3A21;transform:translateY(-1px);}
+.btn-generate:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.loading{display:none;text-align:center;padding:40px;background:white;border:1px solid var(--border);border-radius:20px;margin-bottom:24px;}
+.loading.show{display:block;}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:#2D5A35;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.result-card{display:none;background:white;border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px;}
+.result-card.show{display:block;animation:up .4s ease;}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.result-actions{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+.btn-save{background:#2D5A35;color:white;border:none;border-radius:30px;padding:12px 24px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.btn-save:hover{background:#1C3A21;}
+.btn-copy{background:#EEF5EF;color:#2D5A35;border:1px solid #DDE8DE;border-radius:30px;padding:12px 24px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-new{background:white;color:#4A6B4E;border:1px solid #DDE8DE;border-radius:30px;padding:12px 24px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.save-note{background:#EEF5EF;border:1px solid #DDE8DE;border-radius:12px;padding:14px 18px;font-size:13px;color:#4A6B4E;line-height:1.6;margin-bottom:20px;}
+.art-cat{display:inline-block;background:#EEF5EF;color:#2D5A35;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+.art-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#1A2E1C;line-height:1.2;margin-bottom:10px;}
+.art-intro{font-size:15px;color:#4A6B4E;font-weight:300;line-height:1.7;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #DDE8DE;}
+.art-body{font-size:14px;color:#4A6B4E;line-height:1.8;font-weight:300;}
+.art-body h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#1A2E1C;margin:24px 0 10px;}
+.art-body h3{font-size:16px;font-weight:500;color:#1A2E1C;margin:18px 0 8px;}
+.art-body p{margin-bottom:12px;}
+.art-body ul,.art-body ol{padding-left:20px;margin-bottom:12px;}
+.art-body li{margin-bottom:6px;}
+.art-body strong{color:#2D5A35;font-weight:500;}
+.art-body blockquote{background:#EEF5EF;border-left:3px solid #7A9E7E;padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0;font-style:italic;}
+.saved-card{background:white;border:1px solid var(--border);border-radius:20px;padding:28px;}
+.saved-title{font-size:16px;font-weight:500;color:var(--text-dark);margin-bottom:6px;}
+.saved-sub{font-size:13px;color:var(--text-mid);margin-bottom:16px;line-height:1.6;}
+.saved-item{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;}
+.saved-item-title{font-size:13px;font-weight:500;color:var(--text-dark);margin-bottom:3px;}
+.saved-item-meta{font-size:11px;color:var(--text-light);}
+.empty-state{text-align:center;padding:24px;color:var(--text-light);font-size:13px;}
+@media(max-width:768px){.form-row{grid-template-columns:1fr;}.header{padding:24px 18px;}.container{padding:24px 16px;}}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8309397117402042" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="private-bar">🔒 Private Admin Page — Bookmark this URL. Do not share it!</div>
+
+<div class="header">
+  <h1>Blog Admin — <em>Article Generator</em></h1>
+  <p>Generate articles, preview them, save as HTML files, add to your site folder, upload to Netlify.</p>
+</div>
+
+<div class="container">
+
+  <div class="instructions">
+    <h3>📋 Your weekly workflow (30 minutes total)</h3>
+    <div class="step"><div class="step-num">1</div><div class="step-text">Choose a topic and click <strong>Generate article</strong></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Preview it — happy with it? Click <strong>Save as HTML page</strong> — file downloads to your computer</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Add the downloaded file into your <strong>ecomamaplanner-site</strong> folder on your computer</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Go to <strong>Netlify → Deploys</strong> → drag the whole updated folder in → article goes live!</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">Do 3–5 articles per week → after 2 months you have <strong>30+ pages Google is ranking</strong> 📈</div></div>
+  </div>
+
+  <div class="gen-card">
+    <div class="gen-title">✨ Generate a new article</div>
+    <div class="gen-sub">Choose a topic or type your own. Claude AI writes a full 700–900 word SEO article in about 15 seconds.</div>
+    <div class="form-row">
+      <div class="fg">
+        <label>Choose a topic</label>
+        <select id="topic-select">
+          <option value="">— Choose a topic —</option>
+          <optgroup label="🌿 Eco Pregnancy">
+            <option value="10 eco-friendly swaps every expecting mama should make before baby arrives">10 Eco-Friendly Swaps Before Baby Arrives</option>
+            <option value="why organic baby clothing matters and how to choose the best options">Why Organic Baby Clothing Matters</option>
+            <option value="the complete guide to cloth nappies for new mamas benefits costs and how to start">Complete Guide to Cloth Nappies</option>
+            <option value="how to build a non-toxic eco nursery on a budget">Build an Eco Nursery on a Budget</option>
+            <option value="eco-friendly hospital bag essentials every green mama needs">Eco-Friendly Hospital Bag Essentials</option>
+            <option value="sustainable pregnancy nutrition eating green for you and your baby">Sustainable Pregnancy Nutrition Guide</option>
+            <option value="natural remedies for common pregnancy discomforts that actually work">Natural Remedies for Pregnancy Discomforts</option>
+            <option value="how to reduce plastic in your home before baby arrives">Reduce Plastic Before Baby Arrives</option>
+            <option value="best organic prenatal vitamins for eco conscious mamas in 2026">Best Organic Prenatal Vitamins 2026</option>
+            <option value="how to choose a natural birth plan that works for you">How to Write a Natural Birth Plan</option>
+          </optgroup>
+          <optgroup label="🧠 Mental Wellness">
+            <option value="managing pregnancy anxiety naturally a gentle guide for expecting mamas">Managing Pregnancy Anxiety Naturally</option>
+            <option value="how to prepare emotionally for becoming a mother for the first time">Preparing Emotionally for Motherhood</option>
+            <option value="understanding postnatal depression signs support and how to heal">Understanding Postnatal Depression</option>
+            <option value="mindfulness and meditation during pregnancy a beginners guide">Mindfulness During Pregnancy</option>
+            <option value="how to build a strong support system during pregnancy">Building Your Support System</option>
+            <option value="setting boundaries during pregnancy and why it matters for your wellbeing">Setting Boundaries During Pregnancy</option>
+            <option value="pregnancy insomnia why it happens and how to sleep better naturally">Pregnancy Insomnia: Sleep Better Naturally</option>
+            <option value="body image during pregnancy learning to love your changing body">Body Image During Pregnancy</option>
+            <option value="how partners can better support an expecting mama through pregnancy">How Partners Can Support Expecting Mamas</option>
+          </optgroup>
+          <optgroup label="☀️ Solar Nursery">
+            <option value="solar powered nursery products that save electricity and keep baby safe">Solar-Powered Nursery Products Guide</option>
+            <option value="how solar energy can help new families save money on electricity bills">How Solar Saves New Families Money</option>
+            <option value="best solar powered night lights for baby nursery 2026">Best Solar Night Lights for Nursery 2026</option>
+          </optgroup>
+          <optgroup label="💰 Budget Tips">
+            <option value="how to save 5000 dollars on baby costs with eco friendly alternatives">Save $5,000 on Baby Costs with Eco Swaps</option>
+            <option value="the real cost of having a baby and how to prepare financially">The Real Cost of Having a Baby</option>
+            <option value="free and low cost ways to prepare for baby on a tight budget">Preparing for Baby on a Tight Budget</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Or type your own topic</label>
+        <input type="text" id="custom-topic" placeholder="e.g. best eco baby monitors 2026">
+      </div>
+    </div>
+    <button class="btn-generate" id="gen-btn" onclick="generateArticle()">✨ Generate article</button>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p style="font-size:14px;color:#4A6B4E;font-weight:300;">Claude AI is writing your article...<br><span style="font-size:12px;color:#7A9E7E;">Usually takes 10–20 seconds</span></p>
+  </div>
+
+  <div class="result-card" id="result-card">
+    <div class="result-actions">
+      <button class="btn-save" onclick="saveAsHTML()">📥 Save as HTML page</button>
+      <button class="btn-copy" onclick="copyText()">📋 Copy text</button>
+      <button class="btn-new" onclick="resetForm()">↩ Generate another</button>
+    </div>
+    <div class="save-note">
+      💡 <strong>Next step:</strong> Click "Save as HTML page" above → file downloads → add to your <strong>ecomamaplanner-site</strong> folder → drag folder into Netlify → your article is live and Google can find it!
+    </div>
+    <div class="art-cat" id="art-cat">Eco Pregnancy</div>
+    <div class="art-title" id="art-title"></div>
+    <div class="art-intro" id="art-intro"></div>
+    <div class="art-body" id="art-body"></div>
+  </div>
+
+  <div class="saved-card">
+    <div class="saved-title">📁 Articles generated this session</div>
+    <div class="saved-sub">Save each one as HTML, add to your site folder, and upload to Netlify.</div>
+    <div id="saved-list"><div class="empty-state">No articles yet — generate your first one above! 🌿</div></div>
+  </div>
+
+</div>
+
+<script>
+let currentArticle = null;
+let savedArticles = [];
+
+function detectCategory(topic) {
+  const t = topic.toLowerCase();
+  if (t.includes('solar') || t.includes('electricity') || t.includes('nursery light')) return '☀️ Solar Nursery';
+  if (t.includes('mental') || t.includes('anxiety') || t.includes('depression') || t.includes('mindful') || t.includes('sleep') || t.includes('body image') || t.includes('support') || t.includes('boundary') || t.includes('loss') || t.includes('partner') || t.includes('emotion')) return '🧠 Mental Wellness';
+  if (t.includes('budget') || t.includes('save') || t.includes('cost') || t.includes('money') || t.includes('afford') || t.includes('dollar')) return '💰 Budget Tips';
+  return '🌿 Eco Pregnancy';
+}
+
+function slugify(title) {
+  return title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').substring(0,60).replace(/-$/,'');
+}
+
+async function generateArticle() {
+  const select = document.getElementById('topic-select').value;
+  const custom = document.getElementById('custom-topic').value.trim();
+  const topic = custom || select;
+  if (!topic) { alert('Please choose a topic or type your own!'); return; }
+
+  const cat = detectCategory(topic);
+  document.getElementById('loading').classList.add('show');
+  document.getElementById('result-card').classList.remove('show');
+  document.getElementById('gen-btn').disabled = true;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        system: `You are a warm expert writer for EcoMamaPlanner.com targeting eco-conscious expecting mamas in the USA and Australia. Write SEO-friendly articles that are warm, practical, and 700-900 words. Respond ONLY with valid JSON, no markdown fences:
+{"title":"SEO title","intro":"2-3 sentence intro","body":"HTML using only h2 h3 p ul li strong blockquote","slug":"url-slug-max-5-words","metaDescription":"155 char meta description"}`,
+        messages: [{role:'user',content:`Write a complete SEO blog article for EcoMamaPlanner.com on: "${topic}". Target US and Australian eco-conscious expecting mamas.`}]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content[0].text;
+    let article;
+    try {
+      article = JSON.parse(raw.replace(/```json|```/g,'').trim());
+    } catch(e) {
+      article = {title:topic,intro:"A helpful guide for eco-conscious expecting mamas.",body:`<p>${raw}</p>`,slug:slugify(topic),metaDescription:topic.substring(0,155)};
+    }
+
+    currentArticle = {...article, cat, date: new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})};
+    document.getElementById('art-cat').textContent = cat;
+    document.getElementById('art-title').textContent = article.title;
+    document.getElementById('art-intro').textContent = article.intro;
+    document.getElementById('art-body').innerHTML = article.body;
+    document.getElementById('loading').classList.remove('show');
+    document.getElementById('result-card').classList.add('show');
+    document.getElementById('result-card').scrollIntoView({behavior:'smooth',block:'start'});
+
+    savedArticles.push({title:article.title, cat, slug:article.slug||slugify(article.title), date:currentArticle.date});
+    updateSavedList();
+  } catch(err) {
+    document.getElementById('loading').classList.remove('show');
+    alert('Could not generate article. Check your internet and try again.');
+  }
+  document.getElementById('gen-btn').disabled = false;
+}
+
+function saveAsHTML() {
+  if (!currentArticle) return;
+  const slug = currentArticle.slug || slugify(currentArticle.title);
+  const filename = slug + '.html';
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${currentArticle.title} — EcoMamaPlanner</title>
+<meta name="description" content="${currentArticle.metaDescription||currentArticle.intro.substring(0,155)}">
+<link rel="canonical" href="https://ecomamaplanner.com/${filename}">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYCKQ6JFES"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LYCKQ6JFES');<\/script>
+<style>
+:root{--sage:#7A9E7E;--sage-light:#B8D4BB;--sage-pale:#EEF5EF;--forest:#2D5A35;--forest-dark:#1C3A21;--cream:#FAF8F4;--text-dark:#1A2E1C;--text-mid:#4A6B4E;--text-light:#7A9E7E;--border:#DDE8DE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(250,248,244,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--forest);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo img{height:30px;width:auto;}
+.logo span{color:var(--sage);}
+.nav-cta{background:var(--forest);color:#fff;padding:9px 20px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;}
+.ad-bar{margin-top:70px;background:#f0f0f0;border-bottom:1px solid var(--border);text-align:center;padding:10px;font-size:11px;color:#aaa;}
+.wrap{max-width:740px;margin:0 auto;padding:48px 24px 80px;}
+.breadcrumb{font-size:12px;color:var(--text-light);margin-bottom:18px;}
+.breadcrumb a{color:var(--text-light);text-decoration:none;}
+.art-cat{display:inline-block;background:var(--sage-pale);color:var(--forest);font-size:11px;font-weight:500;padding:3px 12px;border-radius:20px;margin-bottom:12px;}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,50px);font-weight:300;color:var(--forest-dark);line-height:1.15;margin-bottom:12px;}
+.art-meta{font-size:13px;color:var(--text-light);margin-bottom:18px;}
+.art-intro{font-size:16px;color:var(--text-mid);font-weight:300;line-height:1.8;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.art-body{font-size:15px;color:var(--text-mid);line-height:1.85;font-weight:300;}
+.art-body h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--forest-dark);margin:32px 0 12px;}
+.art-body h3{font-size:17px;font-weight:500;color:var(--text-dark);margin:22px 0 8px;}
+.art-body p{margin-bottom:14px;}
+.art-body ul,.art-body ol{padding-left:22px;margin-bottom:14px;}
+.art-body li{margin-bottom:7px;line-height:1.7;}
+.art-body strong{color:var(--forest);font-weight:500;}
+.art-body blockquote{background:var(--sage-pale);border-left:4px solid var(--sage);padding:16px 20px;border-radius:0 12px 12px 0;margin:22px 0;font-style:italic;}
+.ad-inline{background:#f5f5f5;border:1px dashed #ccc;border-radius:12px;padding:18px;text-align:center;margin:32px 0;font-size:12px;color:#aaa;}
+.cta-box{background:linear-gradient(135deg,var(--forest-dark),var(--forest));border-radius:20px;padding:32px;text-align:center;margin-top:48px;color:white;}
+.cta-box h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;margin-bottom:10px;}
+.cta-box p{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:20px;font-weight:300;}
+.cta-box a{background:#B8D4BB;color:#1C3A21;padding:13px 30px;border-radius:50px;font-size:14px;font-weight:500;text-decoration:none;display:inline-block;}
+.back{display:inline-block;color:var(--text-light);font-size:13px;text-decoration:none;margin-top:28px;}
+footer{background:var(--forest-dark);padding:28px 48px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:40px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:white;}
+.footer-links{display:flex;gap:18px;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;}
+@media(max-width:768px){nav{padding:14px 18px;}.wrap{padding:36px 18px 60px;}footer{padding:20px 18px;flex-direction:column;align-items:flex-start;}}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8309397117402042" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><img src="logo.png" alt="EcoMamaPlanner">Eco<span>Mama</span>Planner</a>
+  <a href="index.html#generator" class="nav-cta">Create my free plan →</a>
+</nav>
+<div class="ad-bar">ADVERTISEMENT — Google AdSense 728×90</div>
+<div class="wrap">
+  <div class="breadcrumb"><a href="index.html">Home</a> → <a href="blog.html">Blog</a> → ${currentArticle.cat}</div>
+  <div class="art-cat">${currentArticle.cat}</div>
+  <h1>${currentArticle.title}</h1>
+  <div class="art-meta">Published ${currentArticle.date} · EcoMamaPlanner.com</div>
+  <p class="art-intro">${currentArticle.intro}</p>
+  <div class="ad-inline">Google AdSense — 728×90 Mid-Content Ad</div>
+  <div class="art-body">${currentArticle.body}</div>
+  <div class="ad-inline">Google AdSense — 728×90 Bottom Ad</div>
+  <div class="cta-box">
+    <h3>Get your free personalized pregnancy plan 🌿</h3>
+    <p>Week-by-week guide, eco nursery tips, solar products, budget tracker, and hospital bag checklist — in one beautiful PDF.</p>
+    <a href="index.html#generator">✨ Create my free plan</a>
+  </div>
+  <a href="blog.html" class="back">← Back to all articles</a>
+</div>
+<footer>
+  <div class="footer-logo">EcoMamaPlanner</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+</footer>
+</body>
+</html>`;
+
+  const blob = new Blob([html],{type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+  alert('✅ "' + filename + '" downloaded!\n\nNow:\n1. Add it to your ecomamaplanner-site folder\n2. Drag the whole folder into Netlify\n3. Live at ecomamaplanner.com/' + filename + ' 🎉');
+}
+
+function copyText() {
+  if (!currentArticle) return;
+  const text = currentArticle.title + '\n\n' + currentArticle.intro + '\n\n' + document.getElementById('art-body').innerText;
+  navigator.clipboard.writeText(text).then(() => alert('✅ Copied to clipboard!'));
+}
+
+function resetForm() {
+  document.getElementById('result-card').classList.remove('show');
+  document.getElementById('topic-select').value = '';
+  document.getElementById('custom-topic').value = '';
+  currentArticle = null;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateSavedList() {
+  const list = document.getElementById('saved-list');
+  if (savedArticles.length === 0) {
+    list.innerHTML = '<div class="empty-state">No articles yet — generate your first one above! 🌿</div>';
+    return;
+  }
+  list.innerHTML = savedArticles.map(a => `
+    <div class="saved-item">
+      <div class="saved-item-title">${a.title}</div>
+      <div class="saved-item-meta">${a.cat} · ${a.date} · Filename: <strong>${a.slug}.html</strong></div>
+    </div>`).join('') + '<div style="font-size:12px;color:#7A9E7E;padding:10px;text-align:center">Add all these HTML files to your ecomamaplanner-site folder and re-upload to Netlify 🌿</div>';
+}
+</script>
+</body>
+</html>

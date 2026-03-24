@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="favicon-32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — EcoMamaPlanner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#7A9E7E;--sage-light:#B8D4BB;--sage-pale:#EEF5EF;--forest:#2D5A35;--forest-dark:#1C3A21;--cream:#FAF8F4;--warm:#FFFFFF;--text-dark:#1A2E1C;--text-mid:#4A6B4E;--text-light:#7A9E7E;--border:#DDE8DE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(250,248,244,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--forest);text-decoration:none;}
+.logo span{color:var(--sage);}
+  .logo img{height:36px;width:auto;display:inline-block;vertical-align:middle;margin-right:8px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text-mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--forest);}
+.nav-cta{background:var(--forest);color:#fff;padding:10px 22px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;}
+.ad-bar{margin-top:80px;background:#f0f0f0;border-bottom:1px solid var(--border);text-align:center;padding:10px;font-size:11px;color:#aaa;letter-spacing:.05em;}
+
+.page-hero{padding:72px 48px 56px;background:linear-gradient(135deg,var(--forest-dark),var(--forest));color:white;text-align:center;}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,56px);font-weight:300;margin-bottom:14px;}
+.page-hero h1 em{font-style:italic;color:var(--sage-light);}
+.page-hero p{font-size:15px;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto;font-weight:300;line-height:1.7;}
+
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:72px 48px;max-width:1100px;margin:0 auto;}
+
+/* LEFT — INFO */
+.contact-info{}
+.info-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--forest-dark);margin-bottom:12px;}
+.info-title em{font-style:italic;color:var(--sage);}
+.info-sub{font-size:15px;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:36px;}
+.info-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:24px;}
+.info-icon{width:44px;height:44px;background:var(--sage-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.info-item h4{font-size:14px;font-weight:500;color:var(--text-dark);margin-bottom:3px;}
+.info-item p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.5;}
+.info-item a{color:var(--forest);text-decoration:none;font-weight:500;}
+.response-box{background:var(--sage-pale);border:1px solid var(--border);border-radius:16px;padding:22px;margin-top:32px;}
+.response-box h4{font-size:13px;font-weight:600;color:var(--forest);margin-bottom:8px;}
+.response-box p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.6;}
+.faq-list{margin-top:32px;}
+.faq-title{font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:16px;}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{font-size:13px;font-weight:500;color:var(--text-dark);margin-bottom:5px;cursor:pointer;}
+.faq-a{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.6;}
+
+/* RIGHT — FORM */
+.contact-form-card{background:var(--warm);border:1px solid var(--border);border-radius:24px;padding:36px;box-shadow:0 8px 32px rgba(45,90,53,.06);}
+.form-title{font-size:18px;font-weight:500;color:var(--text-dark);margin-bottom:6px;}
+.form-sub{font-size:13px;color:var(--text-mid);font-weight:300;margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.fg label{font-size:11px;font-weight:500;color:var(--text-mid);text-transform:uppercase;letter-spacing:.04em;}
+.fg input,.fg select,.fg textarea{border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--text-dark);background:white;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s;-webkit-appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sage);}
+.fg textarea{resize:vertical;min-height:140px;line-height:1.6;}
+.fg select option{background:white;color:var(--text-dark);}
+.char-count{font-size:11px;color:var(--text-light);text-align:right;margin-top:3px;}
+.btn-send{width:100%;padding:15px;background:var(--forest);color:white;border:none;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;letter-spacing:.02em;}
+.btn-send:hover{background:var(--forest-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(45,90,53,.25);}
+.privacy-note{font-size:11px;color:var(--text-light);text-align:center;margin-top:12px;line-height:1.5;}
+.success-msg{display:none;background:var(--sage-pale);border:1px solid var(--sage-light);border-radius:14px;padding:24px;text-align:center;animation:fadeUp .4s ease;}
+.success-msg.show{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.success-msg h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--forest-dark);margin-bottom:8px;}
+.success-msg p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.6;}
+
+footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
+.footer-links{display:flex;gap:22px;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:rgba(255,255,255,.8);}
+
+@media(max-width:768px){
+  nav{padding:14px 18px;}.nav-links{display:none;}
+  .page-hero{padding:56px 18px 40px;}
+  .contact-layout{grid-template-columns:1fr;padding:40px 18px;gap:32px;}
+  footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYCKQ6JFES"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LYCKQ6JFES');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8309397117402042" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="logo.png" alt="EcoMamaPlanner logo">Eco<span>Mama</span>Planner</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" style="color:var(--forest);font-weight:500">Contact</a></li>
+    <li><a href="disclaimer.html">Disclaimer</a></li>
+  </ul>
+  <a href="index.html#generator" class="nav-cta">Create my plan →</a>
+</nav>
+
+<div class="ad-bar">ADVERTISEMENT — Google AdSense 728×90 leaderboard</div>
+
+<div class="page-hero">
+  <h1>We'd love to<br><em>hear from you</em></h1>
+  <p>Questions, feedback, partnerships, or just want to say hi — we're here and we always reply.</p>
+</div>
+
+<div class="contact-layout">
+
+  <!-- LEFT -->
+  <div class="contact-info">
+    <h2 class="info-title">Get in <em>touch</em></h2>
+    <p class="info-sub">Whether you have a question about your pregnancy plan, a blog topic suggestion, a partnership inquiry, or just want to share your story — we'd love to hear from you.</p>
+
+    <div class="info-item">
+      <div class="info-icon">📧</div>
+      <div>
+        <h4>Email us</h4>
+        <p><a href="mailto:hello@ecomamaplanner.com">hello@ecomamaplanner.com</a><br>We reply within 24–48 hours.</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🌿</div>
+      <div>
+        <h4>Eco product partnerships</h4>
+        <p>Interested in featuring your eco-friendly or solar product on our site? We'd love to collaborate.<br><a href="mailto:partnerships@ecomamaplanner.com">partnerships@ecomamaplanner.com</a></p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📝</div>
+      <div>
+        <h4>Blog contributions</h4>
+        <p>Are you a midwife, eco expert, or wellness professional? We welcome guest contributors who share our values.</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🐛</div>
+      <div>
+        <h4>Report an issue</h4>
+        <p>Something not working on the planner or blog? Let us know and we'll fix it as soon as possible.</p>
+      </div>
+    </div>
+
+    <div class="response-box">
+      <h4>⏱ Response time</h4>
+      <p>We typically respond within <strong>24–48 hours</strong> on weekdays. We're a small team — your patience is appreciated and your message always gets a real reply (not a bot!).</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-title">Frequently asked questions</div>
+      <div class="faq-item">
+        <div class="faq-q">Is the pregnancy plan medically reviewed?</div>
+        <div class="faq-a">Our content is based on widely accepted pregnancy guidelines. It is not a substitute for professional medical advice. Always consult your doctor or midwife. See our <a href="disclaimer.html" style="color:var(--forest)">full disclaimer</a>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I get a refund on the $4.99 PDF plan?</div>
+        <div class="faq-a">Yes — if you're not happy with your PDF plan, contact us within 7 days and we'll refund you in full. No questions asked.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my personal data stored?</div>
+        <div class="faq-a">No. Your name and due date are only used to generate your plan and are never stored on our servers or shared with third parties.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I suggest a blog topic?</div>
+        <div class="faq-a">Absolutely! Use the contact form and select "Blog topic suggestion" — we love hearing what our mamas want to read about.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM -->
+  <div>
+    <div class="contact-form-card">
+      <div class="form-title">Send us a message</div>
+      <div class="form-sub">Fill in the form and we'll get back to you as soon as possible.</div>
+
+      <div id="contact-form">
+        <div class="fg">
+          <label>Your name</label>
+          <input type="text" id="cf-name" placeholder="e.g. Maria Santos">
+        </div>
+        <div class="fg">
+          <label>Email address</label>
+          <input type="email" id="cf-email" placeholder="your@email.com">
+        </div>
+        <div class="fg">
+          <label>What is this about?</label>
+          <select id="cf-topic">
+            <option value="">— Choose a topic —</option>
+            <option>Question about my pregnancy plan</option>
+            <option>PDF download issue</option>
+            <option>Blog topic suggestion</option>
+            <option>Eco product partnership</option>
+            <option>Guest blog contribution</option>
+            <option>Report a bug or issue</option>
+            <option>General feedback</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Your message</label>
+          <textarea id="cf-message" placeholder="Tell us what's on your mind..." maxlength="1000" oninput="updateCount(this)"></textarea>
+          <div class="char-count"><span id="char-num">0</span> / 1000 characters</div>
+        </div>
+        <button class="btn-send" onclick="sendMessage()">💚 Send message</button>
+        <p class="privacy-note">🔒 Your information is private and never shared. By submitting you agree to our <a href="disclaimer.html" style="color:var(--forest)">terms</a>.</p>
+      </div>
+
+      <div class="success-msg" id="success-msg">
+        <div style="font-size:40px;margin-bottom:12px">💚</div>
+        <h3>Message sent!</h3>
+        <p>Thank you for reaching out. We'll get back to you at <strong id="reply-email"></strong> within 24–48 hours.<br><br>In the meantime, why not <a href="blog.html" style="color:var(--forest)">explore our blog</a> or <a href="index.html#generator" style="color:var(--forest)">generate your pregnancy plan</a>?</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="EcoMamaPlanner" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;filter:brightness(0) invert(1) opacity(0.8);">EcoMamaPlanner</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div style="font-size:12px">© 2026 EcoMamaPlanner.com — Made with 💚</div>
+</footer>
+
+<script>
+function updateCount(el) {
+  document.getElementById('char-num').textContent = el.value.length;
+}
+
+function sendMessage() {
+  const name = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const topic = document.getElementById('cf-topic').value;
+  const msg = document.getElementById('cf-message').value.trim();
+
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  if (!topic) { alert('Please choose what your message is about.'); return; }
+  if (msg.length < 10) { alert('Please write a message of at least 10 characters.'); return; }
+
+  // In production: connect to Formspree, EmailJS, or your own backend here
+  // e.g. fetch('https://formspree.io/f/YOUR_ID', { method:'POST', body: formData })
+
+  document.getElementById('reply-email').textContent = email;
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('success-msg').classList.add('show');
+}
+</script>
+</body>
+</html>

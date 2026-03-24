@@ -1,0 +1,1156 @@
+<
+window.AW=AW; window.BODY=BODY; window.EAT=EAT; window.AVOID=AVOID;
+window.EX=EX; window.MH=MH; window.WARN_U=WARN_U; window.WARN_W=WARN_W;
+window.ECO=ECO; window.SOLAR=SOLAR; window.BUDGET=BUDGET; window.BTOT=BTOT; window.HOSP=HOSP;
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="favicon-32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoMamaPlanner — Your Complete Personalized Pregnancy Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  --sage:#7A9E7E;--sage-light:#B8D4BB;--sage-pale:#EEF5EF;
+  --forest:#2D5A35;--forest-dark:#1C3A21;--cream:#FAF8F4;
+  --warm:#FFFFFF;--text-dark:#1A2E1C;--text-mid:#4A6B4E;
+  --text-light:#7A9E7E;--border:#DDE8DE;--gold:#C9A84C;
+  --warn:#FFF3E0;--warn-border:#FFB74D;--warn-text:#E65100;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(250,248,244,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--forest);text-decoration:none;}
+.logo span{color:var(--sage);}
+  .logo img{height:36px;width:auto;display:inline-block;vertical-align:middle;margin-right:8px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text-mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--forest);}
+.nav-cta{background:var(--forest);color:#fff;padding:10px 22px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--forest-dark);}
+
+.ad-bar{margin-top:80px;background:#f0f0f0;border-bottom:1px solid var(--border);text-align:center;padding:10px;font-size:11px;color:#aaa;letter-spacing:.05em;}
+
+/* HERO */
+.hero{min-height:90vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 48px 60px;gap:60px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-100px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(184,212,187,.35) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--sage-pale);border:1px solid var(--sage-light);padding:6px 14px;border-radius:40px;font-size:12px;font-weight:500;color:var(--forest);letter-spacing:.03em;margin-bottom:24px;}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--sage);display:block;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,64px);font-weight:300;line-height:1.1;color:var(--forest-dark);margin-bottom:22px;}
+.hero h1 em{font-style:italic;color:var(--sage);}
+.hero p{font-size:15px;line-height:1.7;color:var(--text-mid);max-width:440px;margin-bottom:36px;font-weight:300;}
+.hero-actions{display:flex;gap:14px;align-items:center;}
+.btn-primary{background:var(--forest);color:#fff;padding:14px 30px;border-radius:50px;font-size:14px;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:all .25s;display:inline-block;}
+.btn-primary:hover{background:var(--forest-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(45,90,53,.25);}
+.btn-secondary{color:var(--forest);font-size:14px;text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap .2s;}
+.btn-secondary:hover{gap:10px;}
+.hero-card{background:var(--warm);border:1px solid var(--border);border-radius:24px;padding:28px;box-shadow:0 20px 60px rgba(45,90,53,.08);}
+.hero-card-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);margin-bottom:16px;}
+.week-preview{display:flex;flex-direction:column;gap:10px;}
+.week-item{display:flex;align-items:flex-start;gap:12px;padding:12px;background:var(--sage-pale);border-radius:10px;}
+.week-num{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--forest);min-width:40px;line-height:1;}
+.week-num span{font-size:10px;font-weight:400;display:block;color:var(--text-light);}
+.week-info h4{font-size:13px;font-weight:500;color:var(--text-dark);margin-bottom:2px;}
+.week-info p{font-size:12px;color:var(--text-mid);font-weight:300;line-height:1.4;}
+.pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.pill{background:white;border:1px solid var(--border);padding:4px 11px;border-radius:20px;font-size:11px;color:var(--text-mid);}
+
+.trust-bar{background:var(--forest);padding:16px 48px;display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:8px;}
+.trust-item span{font-size:13px;color:rgba(255,255,255,.8);font-weight:300;}
+
+/* SECTIONS */
+.section{padding:88px 48px;}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:14px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,50px);font-weight:300;line-height:1.15;color:var(--forest-dark);margin-bottom:14px;}
+.section-title em{font-style:italic;color:var(--sage);}
+.section-sub{font-size:15px;color:var(--text-mid);font-weight:300;line-height:1.7;max-width:520px;margin-bottom:48px;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.step-card{background:var(--warm);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.step-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(45,90,53,.1);}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:300;color:var(--sage-pale);position:absolute;top:14px;right:20px;line-height:1;}
+.step-icon{width:42px;height:42px;background:var(--sage-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px;}
+.step-card h3{font-size:15px;font-weight:500;color:var(--text-dark);margin-bottom:8px;}
+.step-card p{font-size:14px;color:var(--text-mid);font-weight:300;line-height:1.6;}
+
+/* GENERATOR */
+#generator{background:linear-gradient(135deg,var(--forest-dark) 0%,var(--forest) 100%);padding:88px 48px;position:relative;overflow:hidden;}
+.gen-container{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.gen-header{text-align:center;margin-bottom:44px;}
+.gen-header .section-label{color:var(--sage-light);}
+.gen-header .section-title{color:white;}
+.gen-header .section-sub{color:rgba(255,255,255,.6);margin:0 auto;}
+.form-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:36px;backdrop-filter:blur(10px);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.form-group{display:flex;flex-direction:column;gap:7px;}
+.form-group.full{grid-column:1/-1;}
+.form-group label{font-size:11px;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.7);text-transform:uppercase;}
+.form-group input,.form-group select{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:13px 16px;font-size:14px;color:white;font-family:'DM Sans',sans-serif;font-weight:300;transition:border-color .2s,background .2s;outline:none;-webkit-appearance:none;}
+.form-group input::placeholder{color:rgba(255,255,255,.3);}
+.form-group input:focus,.form-group select:focus{border-color:var(--sage-light);background:rgba(255,255,255,.12);}
+.form-group select option{background:var(--forest-dark);color:white;}
+.checkbox-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;}
+.checkbox-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);cursor:pointer;transition:all .18s;user-select:none;-webkit-tap-highlight-color:transparent;}
+.checkbox-item.on{background:rgba(184,212,187,.15);border-color:var(--sage-light);}
+.checkbox-item input[type="checkbox"]{display:none;}
+.tog-dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.checkbox-item.on .tog-dot{background:var(--sage-light);border-color:var(--sage-light);}
+.tog-dot-inner{width:7px;height:7px;border-radius:50%;background:var(--forest-dark);opacity:0;transition:opacity .18s;}
+.checkbox-item.on .tog-dot-inner{opacity:1;}
+.checkbox-item span{font-size:13px;color:rgba(255,255,255,.75);font-weight:300;transition:color .18s;}
+.checkbox-item.on span{color:white;font-weight:400;}
+.form-divider{border:none;border-top:1px solid rgba(255,255,255,.1);margin:24px 0;}
+.plan-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.plan-option{border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:18px;cursor:pointer;transition:all .2s;position:relative;}
+.plan-option:hover{border-color:var(--sage-light);}
+.plan-option.selected{border-color:var(--sage-light);background:rgba(184,212,187,.1);}
+.plan-option input[type="radio"]{position:absolute;opacity:0;}
+.plan-name{font-size:14px;font-weight:500;color:white;margin-bottom:3px;}
+.plan-price{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--sage-light);}
+.plan-price span{font-size:12px;font-weight:300;color:rgba(255,255,255,.5);}
+.plan-features{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:4px;}
+.plan-features li{font-size:12px;color:rgba(255,255,255,.65);font-weight:300;padding-left:14px;position:relative;}
+.plan-features li::before{content:'✓';position:absolute;left:0;color:var(--sage-light);font-size:11px;}
+.btn-generate{width:100%;padding:16px;background:var(--sage-light);color:var(--forest-dark);border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:all .25s;letter-spacing:.02em;}
+.btn-generate:hover{background:#CBE8CE;transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.2);}
+
+/* RESULT */
+.result-section{display:none;background:var(--warm);border:1px solid var(--border);border-radius:24px;padding:36px;margin-top:22px;}
+.result-section.visible{display:block;animation:fadeUp .4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.result-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap;gap:14px;}
+.result-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--forest-dark);}
+.result-sub{font-size:13px;color:var(--text-mid);margin-top:3px;}
+.btn-download{background:var(--forest);color:white;padding:11px 22px;border-radius:40px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:7px;}
+.btn-download:hover{background:var(--forest-dark);transform:translateY(-1px);}
+.result-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.stat-box{background:var(--forest);border-radius:12px;padding:14px;text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--sage-light);}
+.stat-label{font-size:10px;color:rgba(255,255,255,.55);margin-top:2px;}
+
+/* RESULT TABS */
+.result-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:12px;}
+.rtab{padding:7px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);color:var(--text-mid);background:white;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.rtab.active{background:var(--forest);color:white;border-color:var(--forest);}
+.rtab-content{display:none;}
+.rtab-content.active{display:block;}
+
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.info-card{background:var(--sage-pale);border-radius:14px;padding:18px;}
+.info-card.full{grid-column:1/-1;}
+.info-card h4{font-size:11px;font-weight:500;color:var(--sage);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+.info-card ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.info-card ul li{font-size:13px;color:var(--text-mid);font-weight:300;padding-left:14px;position:relative;line-height:1.5;}
+.info-card ul li::before{content:'•';position:absolute;left:0;color:var(--sage);}
+.info-card p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.6;}
+
+.warn-card{background:var(--warn);border:1px solid var(--warn-border);border-radius:14px;padding:18px;}
+.warn-card h4{font-size:11px;font-weight:500;color:var(--warn-text);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+.warn-card ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.warn-card ul li{font-size:13px;color:#BF360C;font-weight:300;padding-left:14px;position:relative;line-height:1.5;}
+.warn-card ul li::before{content:'⚠';position:absolute;left:0;font-size:10px;}
+
+.eco-product{background:white;border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;}
+.eco-tag{background:var(--sage-pale);color:var(--forest);font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+.eco-product h5{font-size:13px;font-weight:500;color:var(--text-dark);margin-bottom:3px;}
+.eco-product p{font-size:12px;color:var(--text-mid);font-weight:300;line-height:1.4;}
+.eco-icon{font-size:22px;flex-shrink:0;}
+
+.budget-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.budget-row:last-child{border-bottom:none;}
+.budget-item{color:var(--text-mid);font-weight:300;}
+.budget-cost{color:var(--forest);font-weight:500;}
+.budget-eco{font-size:11px;color:var(--sage);margin-left:6px;}
+.budget-total{background:var(--forest);color:white;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;margin-top:10px;font-size:14px;font-weight:500;}
+
+.exercise-item{background:white;border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+.exercise-item h5{font-size:13px;font-weight:500;color:var(--text-dark);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.ex-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500;}
+.ex-safe{background:#E8F5E9;color:#2E7D32;}
+.ex-caution{background:#FFF8E1;color:#F57F17;}
+.exercise-item p{font-size:12px;color:var(--text-mid);font-weight:300;line-height:1.5;}
+
+.solar-item{background:linear-gradient(135deg,var(--forest-dark),var(--forest));border-radius:14px;padding:18px;margin-bottom:10px;color:white;}
+.solar-item h5{font-size:14px;font-weight:500;margin-bottom:4px;color:white;}
+.solar-item p{font-size:12px;color:rgba(255,255,255,.7);font-weight:300;line-height:1.5;margin-bottom:8px;}
+.solar-save{background:rgba(184,212,187,.2);border:1px solid rgba(184,212,187,.3);color:var(--sage-light);font-size:11px;padding:3px 10px;border-radius:10px;display:inline-block;margin-top:4px;}
+
+.locked-notice{background:#FFF8E8;border:1px solid #F0D890;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;margin-top:14px;font-size:13px;color:#7A5C00;}
+
+/* FEATURES */
+.features-bg{background:var(--sage-pale);}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.feature-item{text-align:center;}
+.feature-icon{width:52px;height:52px;background:white;border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 14px;}
+.feature-item h3{font-size:14px;font-weight:500;color:var(--text-dark);margin-bottom:5px;}
+.feature-item p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.5;}
+
+.ad-inline{background:#f5f5f5;border:1px dashed #ccc;border-radius:12px;padding:18px;text-align:center;margin:44px 0;font-size:12px;color:#aaa;letter-spacing:.05em;}
+
+footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
+.footer-links{display:flex;gap:22px;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:rgba(255,255,255,.8);}
+.footer-copy{font-size:12px;}
+
+@media(max-width:768px){
+  nav{padding:14px 18px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:36px 18px;min-height:auto;gap:32px;}
+  .section{padding:56px 18px;}
+  .steps-grid,.features-grid{grid-template-columns:1fr;}
+  #generator{padding:56px 18px;}
+  .form-grid,.plan-options,.result-stats,.info-grid{grid-template-columns:1fr;}
+  .trust-bar{padding:14px 18px;gap:16px;}
+  footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}
+  .result-tabs{gap:5px;}
+  .rtab{font-size:11px;padding:6px 10px;}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYCKQ6JFES"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LYCKQ6JFES');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8309397117402042" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="logo.png" alt="EcoMamaPlanner logo">Eco<span>Mama</span>Planner</a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#generator">Get my plan</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="#generator" class="nav-cta">Create my plan →</a>
+</nav>
+
+<div class="ad-bar">ADVERTISEMENT — Google AdSense 728×90 leaderboard</div>
+
+<section class="hero">
+  <div style="position:relative;z-index:1">
+    <div class="hero-badge">The most complete free pregnancy planner</div>
+    <h1>Your <em>eco-friendly</em><br>pregnancy plan,<br>made just for you.</h1>
+    <p>A personalized week-by-week plan covering baby development, your body changes, nutrition, exercise, mental wellness, eco nursery guide, solar product picks, budget tracker, and your hospital checklist — all in one beautiful PDF.</p>
+    <div class="hero-actions">
+      <a href="#generator" class="btn-primary">Create my free plan</a>
+      <a href="#how-it-works" class="btn-secondary">How it works →</a>
+    </div>
+  </div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-card">
+      <div class="hero-card-label">Your personalized plan includes</div>
+      <div class="week-preview">
+        <div class="week-item">
+          <div class="week-num">12<span>weeks</span></div>
+          <div class="week-info"><h4>Baby's heartbeat is strong ❤️</h4><p>Size of a lime. First trimester ends. Safe to share the news!</p></div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">20<span>weeks</span></div>
+          <div class="week-info"><h4>Halfway there — anatomy scan 🩻</h4><p>Baby is banana-sized. Eco nursery planning begins.</p></div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">36<span>weeks</span></div>
+          <div class="week-info"><h4>Pack that hospital bag 🎒</h4><p>Baby is honeydew-sized. Weekly midwife visits now.</p></div>
+        </div>
+      </div>
+      <div class="pill-row">
+        <span class="pill">🌿 Eco guide</span>
+        <span class="pill">☀️ Solar nursery</span>
+        <span class="pill">🍏 Nutrition</span>
+        <span class="pill">🏋️ Exercise</span>
+        <span class="pill">💰 Budget</span>
+        <span class="pill">🧠 Wellness</span>
+        <span class="pill">📄 PDF</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><span style="font-size:18px">🌿</span><span>Eco-conscious planning</span></div>
+  <div class="trust-item"><span style="font-size:18px">📄</span><span>Full downloadable PDF</span></div>
+  <div class="trust-item"><span style="font-size:18px">💚</span><span>Free basic plan</span></div>
+  <div class="trust-item"><span style="font-size:18px">☀️</span><span>Solar nursery guide</span></div>
+  <div class="trust-item"><span style="font-size:18px">🔒</span><span>Your data stays private</span></div>
+</div>
+
+<section class="section" id="how-it-works">
+  <div class="section-label">Simple & fast</div>
+  <h2 class="section-title">Everything you need,<br><em>in 3 minutes</em></h2>
+  <p class="section-sub">No account needed. Enter your details and get a comprehensive plan covering all 40 weeks of your pregnancy journey.</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">01</div><div class="step-icon">📅</div><h3>Enter your due date</h3><p>Tell us your due date, birth preferences, and what matters most to you as an eco-conscious mama.</p></div>
+    <div class="step-card"><div class="step-num">02</div><div class="step-icon">⚡</div><h3>We build your plan</h3><p>Our planner generates a week-by-week guide covering development, nutrition, exercise, budget, wellness, and more.</p></div>
+    <div class="step-card"><div class="step-num">03</div><div class="step-icon">📥</div><h3>Download your PDF</h3><p>Get a beautiful, printable PDF to share with your partner, midwife, or save on your phone for the whole journey.</p></div>
+  </div>
+  <div class="ad-inline">Google AdSense — 728×90 Content Ad Placement</div>
+</section>
+
+<section id="generator">
+  <div class="gen-container">
+    <div class="gen-header">
+      <div class="section-label">Free personalized tool</div>
+      <h2 class="section-title">Create your complete plan</h2>
+      <p class="section-sub">Fill in your details and get the most comprehensive free pregnancy planner available — customized just for you.</p>
+    </div>
+    <div class="form-card">
+      <div class="form-grid">
+        <div class="form-group"><label>Your name</label><input type="text" id="mama-name" placeholder="e.g. Maria"></div>
+        <div class="form-group"><label>Due date</label><input type="date" id="due-date"></div>
+        <div class="form-group"><label>First pregnancy?</label>
+          <select id="first-preg">
+            <option value="yes">Yes, my first baby 🎉</option>
+            <option value="no">No, I have children already</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Birth preference</label>
+          <select id="birth-pref">
+            <option value="hospital">Hospital birth</option>
+            <option value="home">Home birth</option>
+            <option value="center">Birth center</option>
+            <option value="undecided">Still deciding</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Your location</label>
+          <select id="location">
+            <option value="au">Australia 🇦🇺</option>
+            <option value="ph">Philippines 🇵🇭</option>
+            <option value="us">USA / Canada 🇺🇸</option>
+            <option value="uk">UK / Europe 🇬🇧</option>
+            <option value="global">Other / Global 🌏</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Monthly budget for baby</label>
+          <select id="budget-range">
+            <option value="low">Budget-conscious ($0–$100/mo)</option>
+            <option value="mid" selected>Moderate ($100–$300/mo)</option>
+            <option value="high">Generous ($300+/mo)</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Include in my plan (select all that apply)</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item on" data-id="c-dev" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>👶 Baby development milestones</span></div>
+            <div class="checkbox-item on" data-id="c-body" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>🤰 My body changes</span></div>
+            <div class="checkbox-item on" data-id="c-nut" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>🍏 Nutrition guide</span></div>
+            <div class="checkbox-item on" data-id="c-ex" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>🏋️ Exercise guide</span></div>
+            <div class="checkbox-item on" data-id="c-mental" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>🧠 Mental wellness tips</span></div>
+            <div class="checkbox-item on" data-id="c-warn" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>⚠️ Warning signs to know</span></div>
+            <div class="checkbox-item on" data-id="c-eco" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>🌿 Eco product recommendations</span></div>
+            <div class="checkbox-item on" data-id="c-solar" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>☀️ Solar nursery guide</span></div>
+            <div class="checkbox-item on" data-id="c-budget" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>💰 Baby budget tracker</span></div>
+            <div class="checkbox-item on" data-id="c-hospital" onclick="togItem(this)"><div class="tog-dot"><div class="tog-dot-inner"></div></div><span>🏥 Hospital bag checklist</span></div>
+          </div>
+        </div>
+      </div>
+      <hr class="form-divider">
+      <div style="background:rgba(184,212,187,.15);border:1px solid rgba(184,212,187,.3);border-radius:14px;padding:16px 20px;text-align:center;margin-bottom:20px"><div style="font-size:15px;font-weight:500;color:white;margin-bottom:6px;">🎉 100% Free — Full Plan for Everyone!</div><div style="font-size:13px;color:rgba(255,255,255,.65);font-weight:300;line-height:1.6;">Your complete personalized pregnancy plan — all 40 weeks, nutrition, exercise, eco guide, solar nursery, budget tracker, hospital bag — as a beautiful downloadable PDF. Completely free, always!</div></div>
+      <button class="btn-generate" onclick="generatePlan()">✨ Generate my free complete plan</button>
+    </div>
+
+    <div class="result-section" id="result-section">
+      <div class="result-header">
+        <div>
+          <div class="result-title" id="r-title">Your Pregnancy Plan</div>
+          <div class="result-sub" id="r-sub">Personalized just for you</div>
+        </div>
+        <button class="btn-download" id="r-dl-btn">📥 Download Full PDF</button>
+      </div>
+      <div class="result-stats" id="r-stats"></div>
+      <div class="result-tabs" id="r-tabs"></div>
+      <div id="r-tab-contents"></div>
+      <div class="locked-notice" id="r-locked" style="display:none">
+        🔒 <div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section features-bg" id="whats-included">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="section-label">Everything covered</div>
+    <h2 class="section-title">What's inside<br>your <em>complete plan</em></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-item"><div class="feature-icon">👶</div><h3>All 40 weeks</h3><p>Baby size, organ development, and movement milestones every single week.</p></div>
+    <div class="feature-item"><div class="feature-icon">🤰</div><h3>Body changes</h3><p>What your body goes through each trimester — honest, detailed, reassuring.</p></div>
+    <div class="feature-item"><div class="feature-icon">🍏</div><h3>Nutrition guide</h3><p>What to eat, what to avoid, and eco-friendly food choices trimester by trimester.</p></div>
+    <div class="feature-item"><div class="feature-icon">🏋️</div><h3>Safe exercise</h3><p>Trimester-appropriate workouts that are safe, effective, and feel good.</p></div>
+    <div class="feature-item"><div class="feature-icon">🧠</div><h3>Mental wellness</h3><p>Honest emotional guidance for every stage — anxiety, mood swings, and joy.</p></div>
+    <div class="feature-item"><div class="feature-icon">⚠️</div><h3>Warning signs</h3><p>Know what's normal and what needs urgent medical attention — stay informed.</p></div>
+    <div class="feature-item"><div class="feature-icon">☀️</div><h3>Solar nursery</h3><p>Solar-powered products that save electricity and are safer for baby.</p></div>
+    <div class="feature-item"><div class="feature-icon">💰</div><h3>Budget tracker</h3><p>Full baby cost estimator with eco-friendly money-saving alternatives.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="EcoMamaPlanner" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;filter:brightness(0) invert(1) opacity(0.8);">EcoMamaPlanner</div>
+  <div class="footer-links">
+    <a href="disclaimer.html">Disclaimer & Terms</a>
+    <a href="contact.html">Contact</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="footer-copy">© 2026 EcoMamaPlanner.com — Made with 💚</div>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+
+const ALL_WEEKS = [
+  {w:1, size:"sesame seed", dev:"Fertilisation may have occurred. The embryo is a tiny cluster of cells.", mama:"You may not know you're pregnant yet. Your last period just ended.", tip:"Start taking folic acid (400mcg daily) if not already."},
+  {w:2, size:"poppy seed", dev:"Ovulation occurs. The egg travels to the uterus for implantation.", mama:"Possible light spotting (implantation bleeding) — totally normal.", tip:"Cut out alcohol and reduce caffeine now."},
+  {w:3, size:"sesame seed", dev:"Implantation complete. The embryo releases pregnancy hormones.", mama:"Breasts may feel tender. Fatigue begins.", tip:"Book a GP or OB appointment to confirm pregnancy."},
+  {w:4, size:"poppy seed", dev:"Heart and neural tube beginning to form.", mama:"Missed period. Home pregnancy test will now be positive.", tip:"Confirm pregnancy with a blood test for accurate hCG levels."},
+  {w:5, size:"apple seed", dev:"Heart starts beating. Brain, spinal cord forming rapidly.", mama:"Nausea begins for many mamas. Heightened sense of smell.", tip:"Eat small frequent meals to help with nausea."},
+  {w:6, size:"lentil", dev:"Heartbeat detectable by ultrasound (~110 bpm). Arm and leg buds appear.", mama:"Morning sickness often peaks. Extreme fatigue is normal.", tip:"Book your first ultrasound (6–8 weeks)."},
+  {w:7, size:"blueberry", dev:"Hands and feet forming. Brain growing rapidly — 100 new cells/minute.", mama:"Bloating, frequent urination, mood swings increase.", tip:"Avoid raw fish, deli meats, unpasteurised cheese."},
+  {w:8, size:"raspberry", dev:"All major organs forming. Fingers and toes visible. Baby can move.", mama:"Uterus is now the size of a grapefruit. Cramping is common.", tip:"Ask your doctor about first trimester screening (10–13 wks)."},
+  {w:9, size:"cherry", dev:"Baby's face is forming — eyelids, nose, mouth. Muscles developing.", mama:"Clothes may feel tighter. Bra size may increase already.", tip:"Consider a prenatal yoga class — great for body and mind."},
+  {w:10, size:"strawberry", dev:"Fingerprints forming. Baby can open and close fists.", mama:"Round ligament pain may begin as uterus grows.", tip:"First trimester screening window opens (nuchal translucency scan)."},
+  {w:11, size:"fig", dev:"Teeth buds forming. Baby is moving actively (you can't feel it yet).", mama:"Nausea may start to ease. Hair and nails growing faster.", tip:"Stay hydrated — aim for 2.5L water daily."},
+  {w:12, size:"lime", dev:"Reflexes developing. Baby can yawn, stretch, and suck thumb.", mama:"First trimester ends! Miscarriage risk drops significantly.", tip:"Safe to share your news with family and friends 🎉"},
+  {w:13, size:"pea pod", dev:"Intestines moving into place. Vocal cords forming. Sex may be visible soon.", mama:"Energy levels typically improve. Bump may start showing.", tip:"Start moisturising your belly daily to support skin elasticity."},
+  {w:14, size:"lemon", dev:"Baby can squint, frown, and make facial expressions.", mama:"Second trimester begins. Most mamas feel a big energy boost.", tip:"Book your anatomy scan (typically at 18–20 weeks)."},
+  {w:15, size:"apple", dev:"Baby is practicing breathing movements using amniotic fluid.", mama:"You may start feeling baby flutters (quickening) soon.", tip:"Sleep on your left side to improve blood flow to baby."},
+  {w:16, size:"avocado", dev:"Baby's eyes are moving. Ears fully formed — baby can hear now!", mama:"Your bump is showing. Round ligament pains may intensify.", tip:"Talk and play music to baby — they can hear you!"},
+  {w:17, size:"pear", dev:"Fat stores developing under skin. Skeleton hardening from cartilage to bone.", mama:"Back pain and sciatic nerve pain may begin.", tip:"Consider a pregnancy pillow — it's a game changer for sleep."},
+  {w:18, size:"bell pepper", dev:"Baby is very active, flipping and turning. Fingerprints complete.", mama:"You should feel baby movements clearly now ('quickening').", tip:"Gentle swimming or walking is ideal exercise this week."},
+  {w:19, size:"mango", dev:"Vernix caseosa (waxy coating) protects baby's skin in amniotic fluid.", mama:"Skin changes — 'pregnancy glow' or melasma (dark patches) possible.", tip:"Use SPF50 sunscreen daily to prevent melasma worsening."},
+  {w:20, size:"banana", dev:"Halfway! Baby has eyebrows, eyelashes, nails. Movements very strong.", mama:"Anatomy scan this week — checks all organs and confirms gender if wanted.", tip:"Begin your eco nursery planning checklist."},
+  {w:21, size:"carrot", dev:"Baby can swallow amniotic fluid, helping digestive system develop.", mama:"Braxton Hicks contractions may begin — painless practice contractions.", tip:"Start researching childcare and parental leave options."},
+  {w:22, size:"papaya", dev:"Sense of touch developing. Baby grabs the umbilical cord!", mama:"Stretch marks may appear. Itching around the belly is normal.", tip:"Drink plenty of water — helps reduce stretch mark severity."},
+  {w:23, size:"grapefruit", dev:"Baby's face fully formed. Rapid brain and lung development continues.", mama:"Blood pressure should be monitored closely now.", tip:"Watch for signs of anaemia — fatigue, pale skin, dizziness."},
+  {w:24, size:"corn", dev:"Viability milestone. Baby has a real chance of survival if born now.", mama:"Glucose tolerance test (gestational diabetes check) typically this week.", tip:"Start your hospital bag list — don't leave it too late!"},
+  {w:25, size:"cauliflower", dev:"Baby responds to familiar voices. Capillaries forming under skin (baby turns pink).", mama:"Heartburn and indigestion often worsen as uterus grows.", tip:"Eat smaller meals and avoid lying down after eating."},
+  {w:26, size:"scallion", dev:"Eyes can now open and close. Baby has hair on its head.", mama:"Hands and feet may swell. Carpal tunnel syndrome possible.", tip:"Elevate feet when resting. Avoid standing for long periods."},
+  {w:27, size:"lettuce", dev:"Brain activity increasing. Baby develops sleep-wake cycles.", mama:"Third trimester approaching. Breathlessness becomes common.", tip:"Practice relaxation and breathing techniques for labour."},
+  {w:28, size:"eggplant", dev:"Third trimester! Baby can blink, cough, hiccup. Lungs nearly mature.", mama:"Check-ups now every 2 weeks. Back pain likely intensifying.", tip:"Begin pelvic floor exercises daily — critical for birth recovery."},
+  {w:29, size:"butternut squash", dev:"Muscles and lungs maturing fast. Baby gaining 200g per week.", mama:"Frequent urination returns as baby presses on bladder.", tip:"Plan your birth preferences — write your birth plan now."},
+  {w:30, size:"cabbage", dev:"Baby's bone marrow fully producing red blood cells.", mama:"Fatigue returns. Difficulty sleeping is very common now.", tip:"Use a pregnancy pillow to improve sleep comfort."},
+  {w:31, size:"coconut", dev:"All five senses functioning. Baby can recognise your voice clearly.", mama:"Colostrum (early breast milk) may leak from nipples.", tip:"Prepare breast pads and research breastfeeding support groups."},
+  {w:32, size:"squash", dev:"Baby practicing breathing regularly. Fingernails fully grown.", mama:"Braxton Hicks may be stronger. Normal unless rhythmic or painful.", tip:"Pack your hospital bag this week — don't wait!"},
+  {w:33, size:"pineapple", dev:"Baby's immune system developing. Skull bones remain soft for birth.", mama:"You may feel very heavy and tired. Swelling is common.", tip:"Attend a birth preparation class if you haven't already."},
+  {w:34, size:"cantaloupe", dev:"Central nervous system and lungs nearly fully mature.", mama:"Braxton Hicks increasing. Pelvic pressure as baby descends.", tip:"Confirm your birth plan with your midwife or OB."},
+  {w:35, size:"honeydew", dev:"Baby is nearly full-term. Most organ development complete.", mama:"You may need to slow down. Rest as much as possible.", tip:"Prepare freezer meals now — you'll thank yourself after birth!"},
+  {w:36, size:"romaine lettuce", dev:"Baby is considered early term. May turn head-down (engagement).", mama:"Easier to breathe as baby drops. More pelvic pressure.", tip:"Weekly midwife visits begin. Install your car seat now."},
+  {w:37, size:"Swiss chard", dev:"Full-term in 3 more weeks. Baby is practicing breathing, sucking, gripping.", mama:"Cervix may begin to soften and dilate.", tip:"Review labour signs: regular contractions, water breaking, bloody show."},
+  {w:38, size:"pumpkin", dev:"Baby has a firm grasp. Lanugo (fine hair) mostly shed.", mama:"Nesting instinct often peaks. Your body is ready.", tip:"Rest. Stay home if possible. Baby could come any day."},
+  {w:39, size:"mini watermelon", dev:"Brain still developing rapidly. Lungs producing surfactant for first breath.", mama:"You may lose your mucus plug — labour could be soon!", tip:"Stay calm, stay hydrated. Time your contractions when they start."},
+  {w:40, size:"pumpkin", dev:"Due date! Baby is fully developed and ready to meet you. 🍼", mama:"If no labour yet — don't panic. 40% of babies arrive after due date.", tip:"Stay positive. Your baby will come. You've got this, Mama. 💚"},
+];
+
+const BODY_CHANGES = {
+  t1: ["Breast tenderness and swelling — your body is preparing for feeding","Nausea and vomiting (morning sickness) — affects 70–80% of mamas","Extreme fatigue — your body is building an entire human!","Frequent urination as uterus expands and presses on bladder","Heightened sense of smell — some smells may trigger nausea","Bloating, constipation, and food aversions are very common","Mood swings due to surging hormones (oestrogen and progesterone)","Light spotting (implantation bleeding) is normal in weeks 1–4"],
+  t2: ["Baby bump appears — usually visible by week 16–18","Energy levels typically improve significantly","Round ligament pain — sharp pains on sides of abdomen","Skin changes: pregnancy glow, or dark patches (melasma)","Stretch marks may begin on belly, thighs, or breasts","Increased appetite as nausea eases","Braxton Hicks contractions begin (painless practice contractions)","Back pain and sciatic nerve pain as posture changes"],
+  t3: ["Difficulty sleeping — baby's movements, back pain, and frequent urination","Shortness of breath as baby presses on diaphragm","Heartburn worsens as uterus pushes up against stomach","Swollen hands, feet, and ankles (edema) — normal unless sudden","Colostrum (early breast milk) may leak from nipples","Pelvic pressure increases as baby's head engages","Braxton Hicks become stronger and more frequent","Nesting instinct — an overwhelming urge to clean and prepare"]
+};
+
+const MENTAL_HEALTH = [
+  {title:"First trimester anxiety", content:"It's completely normal to feel anxious, especially about miscarriage. Limit yourself to one pregnancy check per day — excessive googling increases anxiety."},
+  {title:"Second trimester emotional shifts", content:"Many mamas feel more settled and joyful. However, body image concerns can surface as your bump grows. Remind yourself your body is doing something miraculous."},
+  {title:"Third trimester fear of birth", content:"Fear of labour is extremely common. Consider a birth preparation class, hypnobirthing, or speaking with your midwife about your fears — knowledge reduces anxiety."},
+  {title:"Postnatal depression awareness", content:"Up to 1 in 5 mamas experience postnatal depression. Signs include persistent sadness, disconnection from baby, and feeling overwhelmed. Always tell your doctor — it's treatable."},
+  {title:"Partner communication", content:"Tell your partner specifically what you need — this is not the time for hints. 'I need you to cook dinner twice a week' is clearer than 'I need more help'."},
+  {title:"Daily wellness practices", content:"5 minutes of deep breathing, a short daily walk, and reducing social media can significantly improve mood. Your mental health matters as much as your physical health."},
+];
+
+const WARNING_SIGNS = {
+  urgent: ["Heavy vaginal bleeding (more than a period) — call emergency services","Severe abdominal pain that doesn't ease — go to hospital","Sudden severe headache with vision changes — may indicate preeclampsia","Facial swelling combined with severe headache — call your doctor immediately","Baby stops moving or movements significantly reduce after week 28 — call hospital","Signs of labour before 37 weeks — regular painful contractions before full term","Fever above 38°C / 100.4°F — seek medical attention","Burning pain when urinating — may be UTI which needs treatment in pregnancy"],
+  watch: ["Mild spotting in first trimester — often normal but mention to your doctor","Persistent nausea and vomiting preventing any food intake — hyperemesis gravidarum","One-sided abdominal pain in first trimester — rule out ectopic pregnancy","Persistent itching especially on hands and feet — may indicate obstetric cholestasis","Unusual vaginal discharge — change in colour, smell, or amount","Gestational diabetes symptoms — excessive thirst, fatigue, blurred vision","Swelling that is sudden and severe — may indicate preeclampsia"]
+};
+
+const ECO_PRODUCTS = [
+  {icon:"🌿", name:"Bamboo swaddle blankets", desc:"Softer than cotton, naturally hypoallergenic, and biodegradable. Look for OEKO-TEX certified.", tag:"Nursery essential", link:"https://www.amazon.com/s?k=bamboo+baby+swaddle+blanket"},
+  {icon:"🍼", name:"Glass baby bottles", desc:"No BPA, no microplastics. Safer for baby and better for the planet. Brands: Philips Avent Glass, Dr Brown's Glass.", tag:"Feeding", link:"https://www.amazon.com/s?k=glass+baby+bottles"},
+  {icon:"👶", name:"Organic cotton nappies (cloth)", desc:"Save up to 6,000 disposable nappies per child. Modern cloth nappies are easy to use.", tag:"Eco hero", link:"https://www.amazon.com/s?k=organic+cloth+nappies"},
+  {icon:"🧴", name:"Natural baby skincare", desc:"Avoid parabens, sulfates, and synthetic fragrance. Choose certified organic brands like Weleda or Earth Mama.", tag:"Skincare", link:"https://www.amazon.com/s?k=organic+baby+skincare"},
+  {icon:"🛏️", name:"Organic cot mattress", desc:"Conventional mattresses often contain flame retardants and chemicals. Organic wool or latex is safer.", tag:"Sleep safety", link:"https://www.amazon.com/s?k=organic+baby+cot+mattress"},
+  {icon:"🧸", name:"Wooden and natural rubber toys", desc:"Avoid plastic toys with unknown chemical content. Natural rubber teethers and wooden toys are safe and beautiful.", tag:"Play", link:"https://www.amazon.com/s?k=natural+rubber+baby+toys"},
+];
+
+const SOLAR_PRODUCTS = [
+  {name:"Solar-powered nursery night light", desc:"Charges via a small solar panel on the window during the day. Provides a gentle amber glow at night — no electricity cost ever.", save:"Save ~$30/year on electricity"},
+  {name:"Solar power bank / charger", desc:"Keep your phone, baby monitor, and small devices charged using solar power. Essential for the hospital bag too.", save:"Charge devices for free"},
+  {name:"Solar window fan for nursery", desc:"Maintains airflow and temperature in baby's room using only sunlight. No running cost, no cords near baby.", save:"Save ~$80/year on cooling"},
+  {name:"Solar-powered fairy lights (nursery décor)", desc:"Beautiful ambient lighting for the nursery, zero electricity cost. Charge on a sunny windowsill during the day.", save:"100% free to run"},
+  {name:"Solar garden / pathway lights", desc:"Safe, automatic outdoor lighting for your home. Nesting mamas love setting up a safe, well-lit home environment.", save:"Save ~$50/year"},
+  {name:"Solar baby food warmer", desc:"Some compact solar-compatible warmers can be used with power banks. Ideal for travel and camping families.", save:"Reduce kitchen energy use"},
+];
+
+const EXERCISES = {
+  t1: [
+    {name:"Walking (30 min daily)", safe:true, desc:"The safest and most sustainable exercise throughout pregnancy. Boosts energy and mood, reduces nausea."},
+    {name:"Prenatal yoga", safe:true, desc:"Improves flexibility, reduces back pain, and prepares breathing for labour. Look for a certified prenatal class."},
+    {name:"Swimming", safe:true, desc:"Zero impact on joints. Relieves body weight and swelling. Safe throughout all three trimesters."},
+    {name:"Light strength training", safe:true, desc:"Maintaining muscle tone helps labour and recovery. Use light weights, avoid heavy lifting or holding breath."},
+    {name:"High-intensity interval training (HIIT)", safe:false, desc:"Avoid high intensity workouts if not already fit. Overheating is dangerous in the first trimester."},
+    {name:"Contact sports / skiing", safe:false, desc:"Any sport with fall risk or physical contact should be avoided throughout pregnancy."},
+  ],
+  t2: [
+    {name:"Walking and light hiking", safe:true, desc:"Continue or increase walking. Flat terrain is best. Bring water and snacks."},
+    {name:"Prenatal pilates", safe:true, desc:"Strengthens pelvic floor and core — crucial for labour and postpartum recovery."},
+    {name:"Aqua aerobics", safe:true, desc:"Great for swelling relief. The water supports your growing bump while keeping your heart rate up."},
+    {name:"Cycling (stationary bike)", safe:true, desc:"Stationary bike is safer than outdoor cycling. Avoid risk of falls as bump grows."},
+    {name:"Heavy weightlifting", safe:false, desc:"Avoid heavy weights and exercises that require lying flat on your back after week 20."},
+  ],
+  t3: [
+    {name:"Gentle walking (20–30 min)", safe:true, desc:"Shorter walks more frequently. Rest when needed. Movement helps baby engage into position."},
+    {name:"Pelvic floor exercises (Kegels)", safe:true, desc:"Do these daily. Reduces risk of tearing during birth and speeds up postpartum recovery."},
+    {name:"Prenatal yoga and stretching", safe:true, desc:"Focus on hip openers and breathing exercises that prepare your body for labour."},
+    {name:"Swimming and aqua aerobics", safe:true, desc:"Water relieves pressure and swelling. One of the best exercises in the third trimester."},
+    {name:"Running or jogging", safe:false, desc:"High impact is not recommended in the third trimester. Switch to walking or swimming."},
+  ],
+};
+
+function getBudget(range) {
+  const budgets = {
+    low: [
+      {item:"Cot / bassinet (secondhand or simple)", cost:"$0–$80", eco:true},
+      {item:"Organic cotton swaddle & bedding set", cost:"$30–$60", eco:true},
+      {item:"Cloth nappies starter pack (20 nappies)", cost:"$80–$150", eco:true},
+      {item:"Glass baby bottles (set of 4)", cost:"$25–$50", eco:true},
+      {item:"Baby carrier / wrap", cost:"$40–$80", eco:false},
+      {item:"Natural rubber pacifiers (2-pack)", cost:"$15–$25", eco:true},
+      {item:"Secondhand pram / stroller", cost:"$0–$150", eco:true},
+      {item:"Baby monitor (basic)", cost:"$30–$60", eco:false},
+    ],
+    mid: [
+      {item:"Cot with organic mattress", cost:"$200–$400", eco:true},
+      {item:"Full organic nursery bedding set", cost:"$80–$150", eco:true},
+      {item:"Cloth nappies full set (30 nappies)", cost:"$200–$300", eco:true},
+      {item:"Glass bottles + natural feeding accessories", cost:"$80–$120", eco:true},
+      {item:"Ergonomic baby carrier", cost:"$100–$180", eco:false},
+      {item:"Mid-range pram / travel system", cost:"$400–$700", eco:false},
+      {item:"Solar night light for nursery", cost:"$20–$45", eco:true},
+      {item:"Video baby monitor", cost:"$80–$150", eco:false},
+    ],
+    high: [
+      {item:"Designer cot with organic latex mattress", cost:"$500–$1,200", eco:true},
+      {item:"Full organic nursery furniture set", cost:"$800–$2,000", eco:true},
+      {item:"Premium cloth nappy system", cost:"$400–$600", eco:true},
+      {item:"High-end breast pump", cost:"$200–$400", eco:false},
+      {item:"Premium ergonomic baby carrier", cost:"$180–$300", eco:false},
+      {item:"Luxury pram / stroller", cost:"$800–$2,000", eco:false},
+      {item:"Full solar nursery lighting setup", cost:"$80–$200", eco:true},
+      {item:"Smart video baby monitor", cost:"$200–$400", eco:false},
+    ]
+  };
+  return budgets[range] || budgets.mid;
+}
+
+const HOSPITAL_BAG = {
+  hospital: ["Medicare card / health insurance card","Photo ID and birth preferences / birth plan","Comfortable loose nightgown or pyjamas (x2–3)","Nursing bra and breast pads","Maternity pads (hospital often provides but bring your own)","Toiletries: toothbrush, shampoo, lip balm (labour essential!)","Phone charger and portable battery bank","Snacks and drinks for you and your support person","Baby's going-home outfit (newborn + 0–3 month size)","Car seat (must be installed before leaving hospital)","Nappy bag with 5 newborn nappies and wipes","Warm blanket for baby"],
+  home: ["Set up a birth kit with your midwife — they will provide a list","Waterproof mattress protector or birth pool if planned","Towels and warm blankets for baby","Plastic sheets to protect floors","Good lighting (a torch too)","Snacks and electrolyte drinks for labour","Your partner or support person confirmed and on standby","Emergency hospital plan — know your nearest hospital just in case"],
+  center: ["Birth center intake paperwork completed","Comfortable clothing for labour — you may move around freely","Birth ball, aromatherapy, or music if desired","Baby clothes and car seat for discharge","Snacks for a long labour","Camera or phone for photos"],
+};
+
+// ── UI ────────────────────────────────────────────────────────────────────────
+
+let currentPlan = 'free';
+function togItem(el){el.classList.toggle('on');}
+function isOn(id){const el=document.querySelector('[data-id="'+id+'"]');return el&&el.classList.contains('on');}
+function selPlan(p) {
+  currentPlan = p;
+  document.getElementById('plan-free-lbl').classList.toggle('selected', p==='free');
+  document.getElementById('plan-full-lbl').classList.toggle('selected', p==='full');
+}
+
+function generatePlan() {
+  const name = document.getElementById('mama-name').value || 'Mama';
+  const dueVal = document.getElementById('due-date').value;
+  if (!dueVal) { alert('Please enter your due date to generate your plan!'); return; }
+
+  const due = new Date(dueVal);
+  const today = new Date();
+  const conception = new Date(due); conception.setDate(conception.getDate() - 280);
+  const daysElapsed = Math.floor((today - conception) / 86400000);
+  const week = Math.min(Math.max(1, Math.floor(daysElapsed / 7)), 40);
+  const weeksLeft = Math.max(0, 40 - week);
+  const daysLeft = Math.max(0, Math.floor((due - today) / 86400000));
+  const tri = week <= 13 ? '1st Trimester' : week <= 26 ? '2nd Trimester' : '3rd Trimester';
+  const triKey = week <= 13 ? 't1' : week <= 26 ? 't2' : 't3';
+  const birthPref = document.getElementById('birth-pref').value;
+  const budgetRange = document.getElementById('budget-range').value;
+
+  const cur = ALL_WEEKS[Math.min(week - 1, 39)];
+  const nxt = ALL_WEEKS[Math.min(week, 39)];
+
+  // Stats
+  document.getElementById('r-stats').innerHTML = `
+    <div class="stat-box"><div class="stat-num">${week}</div><div class="stat-label">Weeks along</div></div>
+    <div class="stat-box"><div class="stat-num">${weeksLeft}</div><div class="stat-label">Weeks to go</div></div>
+    <div class="stat-box"><div class="stat-num">${daysLeft}</div><div class="stat-label">Days left</div></div>
+    <div class="stat-box"><div class="stat-num">${tri.split(' ')[0]}</div><div class="stat-label">${tri.split(' ')[1]}</div></div>`;
+
+  document.getElementById('r-title').textContent = `${name}'s Pregnancy Plan`;
+  document.getElementById('r-sub').textContent = `Week ${week} · ${tri} · Due ${due.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}`;
+
+  // Build tabs
+  const tabs = [];
+
+  tabs.push({id:'overview', label:'📍 Overview', html: buildOverview(week, tri, due, cur, nxt)});
+  if (isOn('c-dev')) tabs.push({id:'dev', label:'👶 Development', html: buildDev(week)});
+  if (isOn('c-body')) tabs.push({id:'body', label:'🤰 Your body', html: buildBody(triKey)});
+  if (isOn('c-nut')) tabs.push({id:'nut', label:'🍏 Nutrition', html: buildNutrition(triKey)});
+  if (isOn('c-ex')) tabs.push({id:'ex', label:'🏋️ Exercise', html: buildExercise(triKey)});
+  if (isOn('c-mental')) tabs.push({id:'mental', label:'🧠 Wellness', html: buildMental()});
+  if (isOn('c-warn')) tabs.push({id:'warn', label:'⚠️ Warnings', html: buildWarnings()});
+  if (isOn('c-eco')) tabs.push({id:'eco', label:'🌿 Eco picks', html: buildEco()});
+  if (isOn('c-solar')) tabs.push({id:'solar', label:'☀️ Solar', html: buildSolar()});
+  if (isOn('c-budget')) tabs.push({id:'budget', label:'💰 Budget', html: buildBudget(budgetRange)});
+  if (isOn('c-hospital')) tabs.push({id:'hosp', label:'🏥 Hospital bag', html: buildHospital(birthPref)});
+
+  const tabsEl = document.getElementById('r-tabs');
+  const contentsEl = document.getElementById('r-tab-contents');
+  tabsEl.innerHTML = tabs.map((t,i) => `<button class="rtab${i===0?' active':''}" onclick="switchTab('${t.id}')" id="tab-${t.id}">${t.label}</button>`).join('');
+  contentsEl.innerHTML = tabs.map((t,i) => `<div class="rtab-content${i===0?' active':''}" id="tc-${t.id}">${t.html}</div>`).join('');
+
+  document.getElementById('r-locked').style.display = 'none';
+  document.getElementById('r-dl-btn').innerHTML = '📥 Download my free PDF';
+  window._pdfData = {name:name, wk:week, wl:weeksLeft, dl:daysLeft, tri:tri, tk:triKey, due:due, cur:cur, nxt:nxt, bp:birthPref, br:budgetRange};
+  document.getElementById('r-dl-btn').onclick = () => { const d=window._pdfData; buildPDF(d.name,d.wk,d.wl,d.dl,d.tri,d.tk,d.due,d.cur,d.nxt,d.bp,d.br); };
+
+  const rs = document.getElementById('result-section');
+  rs.classList.add('visible');
+  setTimeout(() => rs.scrollIntoView({behavior:'smooth',block:'start'}), 100);
+}
+
+function switchTab(id) {
+  document.querySelectorAll('.rtab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.rtab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('tc-'+id).classList.add('active');
+}
+
+// TAB BUILDERS
+function buildOverview(week, tri, due, cur, nxt) {
+  return `<div class="info-grid">
+    <div class="info-card">
+      <h4>📍 You are at Week ${week}</h4>
+      <ul>
+        <li>${tri} · Baby is the size of a <strong>${cur.size}</strong></li>
+        <li>${cur.dev}</li>
+        <li>How you feel: ${cur.mama}</li>
+        <li>This week's tip: ${cur.tip}</li>
+        <li>Due date: ${due.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>🎯 Next milestone — Week ${nxt.w}</h4>
+      <ul>
+        <li>Baby will be the size of a <strong>${nxt.size}</strong></li>
+        <li>${nxt.dev}</li>
+        <li>${nxt.tip}</li>
+        <li>${nxt.w - week} week(s) away</li>
+      </ul>
+    </div>
+    <div class="info-card full">
+      <h4>📅 Your full 40-week journey at a glance</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:4px">
+        ${ALL_WEEKS.map(w => `<div style="background:${w.w===week?'var(--forest)':'white'};color:${w.w===week?'white':'var(--text-mid)'};border:1px solid ${w.w===week?'var(--forest)':'var(--border)'};border-radius:8px;padding:8px;font-size:11px;line-height:1.4">
+          <strong style="color:${w.w===week?'var(--sage-light)':'var(--forest)'}">Week ${w.w}</strong><br>
+          ${w.size}<br>
+          <span style="color:${w.w===week?'rgba(255,255,255,.6)':'var(--text-light)'}">${w.tip.substring(0,40)}…</span>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildDev(week) {
+  const nearby = ALL_WEEKS.slice(Math.max(0, week-3), Math.min(40, week+3));
+  return `<div class="info-grid">
+    ${nearby.map(w => `<div class="info-card">
+      <h4>👶 Week ${w.w} — ${w.size}</h4>
+      <ul>
+        <li>${w.dev}</li>
+        <li>Mama: ${w.mama}</li>
+        <li>Tip: ${w.tip}</li>
+      </ul>
+    </div>`).join('')}
+  </div>`;
+}
+
+function buildBody(triKey) {
+  const changes = BODY_CHANGES[triKey];
+  const triName = triKey==='t1'?'First Trimester':triKey==='t2'?'Second Trimester':'Third Trimester';
+  return `<div class="info-grid">
+    <div class="info-card full">
+      <h4>🤰 Your body in the ${triName}</h4>
+      <ul>${changes.map(c=>`<li>${c}</li>`).join('')}</ul>
+    </div>
+    <div class="info-card">
+      <h4>💆 Self-care this trimester</h4>
+      <ul>
+        <li>Sleep on your left side — improves blood flow to baby</li>
+        <li>Moisturise your belly, breasts, and thighs daily</li>
+        <li>Wear a supportive maternity bra — your breasts grow fast</li>
+        <li>Compression socks help with swelling and circulation</li>
+        <li>Take your prenatal vitamins with food to reduce nausea</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>😴 Sleep tips</h4>
+      <ul>
+        <li>Use a full-length pregnancy pillow — transforms sleep quality</li>
+        <li>Sleep on your left side, especially from 20 weeks onwards</li>
+        <li>Reduce liquids 2 hours before bed to reduce night urination</li>
+        <li>Keep the room cool — you'll run warmer than usual</li>
+        <li>A warm bath before bed helps with relaxation</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+function buildNutrition(triKey) {
+  const foods = {
+    t1: {eat:["Ginger tea or ginger biscuits — relieves nausea naturally","Folate-rich foods: leafy greens, eggs, lentils, fortified cereals","Small frequent meals — every 2–3 hours helps manage nausea","Bland foods like crackers, toast, banana during nausea peaks","Iron-rich foods: red meat, lentils, spinach, tofu","Vitamin C with iron (orange juice) — improves iron absorption"],
+      avoid:["Alcohol — there is no safe level during pregnancy","Raw fish, sushi, sashimi, raw shellfish","Unpasteurised cheese: brie, camembert, blue cheese","Deli meats and processed meats (risk of listeria)","High-mercury fish: shark, swordfish, tuna (limit to 1 serve/week)","Raw eggs, Caesar salad dressing, homemade mayo"]},
+    t2: {eat:["Calcium: dairy, fortified oat milk, broccoli, almonds — builds baby bones","Omega-3 DHA: salmon, sardines, walnuts — brain development","Protein: eggs, legumes, lean meat — baby is growing fast","Fibre: fruits, vegetables, wholegrains — prevents constipation","Magnesium: bananas, dark chocolate, nuts — reduces leg cramps","Plenty of water — at least 2.5 litres daily"],
+      avoid:["Limit caffeine to under 200mg/day (about 1 coffee)","Avoid alcohol entirely — even small amounts","Limit processed and high-sugar foods — gestational diabetes risk","Avoid raw sprouts — can carry bacteria harmful in pregnancy"]},
+    t3: {eat:["Energy-dense foods: nuts, avocado, eggs — you need extra calories now","Iron-rich foods — blood volume peaks in third trimester","Collagen foods: bone broth, berries, leafy greens — supports skin and recovery","Complex carbs: sweet potato, brown rice, oats — sustained energy","Raspberry leaf tea from week 32 — may tone uterus for labour","Dates from week 36 — research suggests may shorten labour"],
+      avoid:["Avoid lying down after eating — severe heartburn risk","Limit very spicy food if heartburn is bad","Avoid excessive salt — worsens swelling and fluid retention"]}
+  };
+  const f = foods[triKey];
+  return `<div class="info-grid">
+    <div class="info-card">
+      <h4>✅ Eat plenty of</h4>
+      <ul>${f.eat.map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>
+    <div class="info-card">
+      <h4>❌ Avoid or limit</h4>
+      <ul>${f.avoid.map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>
+    <div class="info-card full">
+      <h4>💊 Supplements guide</h4>
+      <ul>
+        <li><strong>Folic acid (400mcg)</strong> — essential from before conception through week 12</li>
+        <li><strong>Vitamin D (1000–2000 IU)</strong> — most pregnant women are deficient</li>
+        <li><strong>Iron</strong> — take if your blood test shows low ferritin</li>
+        <li><strong>Omega-3 DHA (200mg)</strong> — supports baby's brain development</li>
+        <li><strong>Iodine (150mcg)</strong> — supports baby's thyroid and brain</li>
+        <li><strong>Calcium</strong> — especially important if dairy intake is low</li>
+        <li>Always confirm supplement doses with your doctor or midwife</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+function buildExercise(triKey) {
+  const exes = EXERCISES[triKey];
+  const triName = triKey==='t1'?'First Trimester':triKey==='t2'?'Second Trimester':'Third Trimester';
+  return `<div style="margin-bottom:14px">
+    <div class="info-card" style="margin-bottom:12px">
+      <h4>🏋️ Exercise in your ${triName}</h4>
+      <p>Aim for 30 minutes of moderate exercise most days. Always listen to your body. Stop if you feel dizzy, have chest pain, or experience any unusual pain. Stay well hydrated and avoid overheating.</p>
+    </div>
+    ${exes.map(e=>`<div class="exercise-item">
+      <h5>${e.name} <span class="ex-badge ${e.safe?'ex-safe':'ex-caution'}">${e.safe?'✓ Safe':'⚠ Avoid'}</span></h5>
+      <p>${e.desc}</p>
+    </div>`).join('')}
+  </div>`;
+}
+
+function buildMental() {
+  return `<div class="info-grid">
+    ${MENTAL_HEALTH.map(m=>`<div class="info-card">
+      <h4>🧠 ${m.title}</h4>
+      <p>${m.content}</p>
+    </div>`).join('')}
+    <div class="info-card full">
+      <h4>📞 When to seek help</h4>
+      <ul>
+        <li>Persistent sadness or crying for more than 2 weeks</li>
+        <li>Feeling disconnected from your pregnancy or baby</li>
+        <li>Panic attacks, inability to function, or extreme anxiety</li>
+        <li>Thoughts of harming yourself — please call a crisis line immediately</li>
+        <li>Your doctor, midwife, or a therapist can help — you don't have to cope alone</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+function buildWarnings() {
+  return `<div class="info-grid">
+    <div class="warn-card full">
+      <h4>🚨 Seek emergency help immediately for</h4>
+      <ul>${WARNING_SIGNS.urgent.map(w=>`<li>${w}</li>`).join('')}</ul>
+    </div>
+    <div class="info-card full">
+      <h4>👀 Monitor and mention to your doctor</h4>
+      <ul>${WARNING_SIGNS.watch.map(w=>`<li>${w}</li>`).join('')}</ul>
+    </div>
+    <div class="info-card">
+      <h4>✅ What IS normal</h4>
+      <ul>
+        <li>Mild nausea and fatigue (especially in 1st trimester)</li>
+        <li>Occasional mild cramping as uterus stretches</li>
+        <li>Braxton Hicks contractions (painless, irregular)</li>
+        <li>Light spotting after sex — very common</li>
+        <li>Round ligament pain — sharp twinges on sides of belly</li>
+        <li>Mild swelling in feet and ankles at end of day</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>📱 Save these numbers</h4>
+      <ul>
+        <li><strong>Emergency: 000 (Australia) / 911 (USA) / 999 (UK)</strong></li>
+        <li>Your midwife or OB's after-hours number</li>
+        <li>Nearest hospital maternity ward</li>
+        <li>PANDA (postnatal depression): 1300 726 306</li>
+        <li>Lifeline: 13 11 14 (Australia)</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+function buildEco() {
+  return `<div style="display:flex;flex-direction:column;gap:10px">
+    ${ECO_PRODUCTS.map(p=>`<div class="eco-product">
+      <span class="eco-icon">${p.icon}</span>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px">
+          <h5>${p.name}</h5>
+          <span class="eco-tag">${p.tag}</span>
+        </div>
+        <p class="desc">${p.desc}</p>
+        <a href="${p.link}" target="_blank" style="font-size:11px;color:var(--forest);font-weight:500;text-decoration:none;margin-top:4px;display:inline-block">Search on Amazon →</a>
+      </div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function buildSolar() {
+  return `<div>
+    <div class="info-card" style="margin-bottom:14px">
+      <h4>☀️ Why solar-powered nursery products?</h4>
+      <p>Solar-powered baby and home products eliminate ongoing electricity costs, are safer (no live cords near baby), and reduce your carbon footprint. As solar technology improves, these products are now genuinely practical, affordable, and stylish.</p>
+    </div>
+    ${SOLAR_PRODUCTS.map(p=>`<div class="solar-item">
+      <h5>☀️ ${p.name}</h5>
+      <p>${p.desc}</p>
+      <span class="solar-save">💰 ${p.save}</span>
+    </div>`).join('')}
+  </div>`;
+}
+
+function buildBudget(range) {
+  const items = getBudget(range);
+  return `<div>
+    <div class="info-card" style="margin-bottom:14px">
+      <h4>💰 Baby budget estimate — ${range==='low'?'Budget-conscious':range==='mid'?'Moderate':'Generous'} range</h4>
+      <p>These are one-time setup costs. Eco-friendly choices often cost more upfront but save money long-term (cloth nappies save ~$3,000 vs disposables over 2 years).</p>
+    </div>
+    <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:16px">
+      ${items.map(i=>`<div class="budget-row">
+        <span class="budget-item">${i.item} ${i.eco?'<span class="eco-tag">🌿 eco</span>':''}</span>
+        <span class="budget-cost">${i.cost}</span>
+      </div>`).join('')}
+      <div class="budget-total">
+        <span>💰 Estimated total</span>
+        <span>${range==='low'?'~$300–$650':range==='mid'?'~$1,200–$2,200':'~$3,000–$7,000'}</span>
+      </div>
+    </div>
+    <div class="info-card" style="margin-top:14px">
+      <h4>💡 Money-saving eco tips</h4>
+      <ul>
+        <li>Cloth nappies save $3,000–$5,000 vs disposables over 2–3 years</li>
+        <li>Buy secondhand prams, cots, and bouncers — safe if checked thoroughly</li>
+        <li>Facebook Marketplace and local buy/swap groups are goldmines</li>
+        <li>Solar products have zero running costs — pay once, use forever</li>
+        <li>Baby clothes are worn for weeks — buy fewer, better quality pieces</li>
+        <li>Breastfeeding saves ~$2,000–$3,000 in formula costs in the first year</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+function buildHospital(pref) {
+  const list = HOSPITAL_BAG[pref] || HOSPITAL_BAG.hospital;
+  const title = pref==='home'?'Home Birth Kit':pref==='center'?'Birth Centre Bag':'Hospital Bag';
+  return `<div class="info-grid">
+    <div class="info-card full">
+      <h4>🎒 Your ${title} checklist</h4>
+      <ul>${list.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+    <div class="info-card">
+      <h4>⏰ When to go to hospital</h4>
+      <ul>
+        <li><strong>5-1-1 rule:</strong> Contractions 5 min apart, lasting 1 minute, for 1 hour</li>
+        <li>Waters break (clear, pink, or greenish fluid)</li>
+        <li>Bloody show (thick, mucus-like discharge with blood)</li>
+        <li>Baby movements significantly reduce</li>
+        <li>Any pain or concern — always trust your instincts</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>🚗 Getting there</h4>
+      <ul>
+        <li>Car seat must be installed BEFORE due date — get it checked</li>
+        <li>Have your route to hospital planned — including at night</li>
+        <li>Have a backup driver arranged in case your partner is unavailable</li>
+        <li>Keep your fuel tank above half from week 36 onwards</li>
+        <li>Pre-register at your hospital at 36 weeks to save time on the day</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+// ── PDF GENERATION ────────────────────────────────────────────────────────────
+
+function buildPDF(name, week, weeksLeft, daysLeft, tri, triKey, due, cur, nxt, birthPref, budgetRange) {
+  const {jsPDF} = window.jspdf;
+  const doc = new jsPDF({unit:'mm', format:'a4'});
+  const W=210, m=18;
+  let y = 22;
+
+  // Inline data - no global dependencies
+  const BODY_DATA = {
+    t1:["Breast tenderness and swelling - preparing for feeding","Nausea and vomiting - affects 70-80% of mamas","Extreme fatigue - your body is building a human!","Frequent urination as uterus expands","Heightened sense of smell triggering nausea","Bloating, constipation, and food aversions","Mood swings due to surging hormones","Light spotting (implantation bleeding) weeks 1-4"],
+    t2:["Baby bump visible by week 16-18","Energy levels typically improve significantly","Round ligament pain - sharp pains on sides of abdomen","Pregnancy glow or dark patches (melasma)","Stretch marks may begin on belly, thighs, breasts","Increased appetite as nausea eases","Braxton Hicks contractions begin (painless)","Back pain and sciatic nerve pain increasing"],
+    t3:["Difficulty sleeping - movements, back pain, urination","Shortness of breath as baby presses on diaphragm","Heartburn worsens as uterus pushes up","Swollen hands, feet, and ankles (edema)","Colostrum may leak from nipples","Pelvic pressure as baby head engages","Braxton Hicks become stronger and frequent","Nesting instinct - overwhelming urge to prepare"]
+  };
+  const EAT_DATA = {
+    t1:["Folate: leafy greens, eggs, fortified cereals","Iron: red meat, lentils, spinach, tofu","Ginger for nausea - tea, biscuits, or fresh ginger","Small frequent meals every 2-3 hours","Vitamin C with iron to improve absorption"],
+    t2:["Calcium: dairy, oat milk, broccoli - builds baby bones","Omega-3 DHA: salmon, walnuts, chia seeds - brain development","Protein: eggs, legumes, lean meat - baby is growing fast","Magnesium: bananas, nuts - reduces leg cramps","2.5+ litres of water daily"],
+    t3:["Energy-dense foods: nuts, avocado, eggs","Dates from week 36 - may shorten labour","Raspberry leaf tea from week 32 - tones uterus","Collagen foods: bone broth, berries, leafy greens","Complex carbs: sweet potato, brown rice, oats"]
+  };
+  const AVOID_DATA = {
+    t1:["Alcohol - no safe level in pregnancy","Raw fish, sushi, raw shellfish","Unpasteurised cheese (brie, camembert, blue)","Deli meats and processed meats","High-mercury fish: shark, swordfish","Caffeine over 200mg per day"],
+    t2:["Caffeine over 200mg per day","Alcohol - even small amounts","Processed and high-sugar foods","Raw sprouts - bacteria risk"],
+    t3:["Lying down after eating - heartburn risk","Excessive salt - worsens swelling","Very spicy food if heartburn is bad"]
+  };
+  const EX_DATA = {
+    t1:[{n:"Walking 30 min daily",s:true,d:"Safest exercise. Boosts energy, reduces nausea."},{n:"Prenatal yoga",s:true,d:"Reduces back pain, prepares breathing for labour."},{n:"Swimming",s:true,d:"Zero joint impact. Safe all three trimesters."},{n:"HIIT or high intensity workouts",s:false,d:"Avoid - overheating is dangerous in first trimester."},{n:"Contact sports or skiing",s:false,d:"Any fall-risk sport should be avoided."}],
+    t2:[{n:"Walking and gentle hiking",s:true,d:"Continue or increase. Bring water and snacks."},{n:"Prenatal pilates",s:true,d:"Strengthens pelvic floor and core."},{n:"Aqua aerobics",s:true,d:"Water supports bump while keeping heart rate up."},{n:"Heavy weightlifting",s:false,d:"Avoid heavy weights and lying flat after week 20."}],
+    t3:[{n:"Gentle walking (20-30 min)",s:true,d:"Shorter walks more frequently. Helps baby engage."},{n:"Pelvic floor exercises (Kegels)",s:true,d:"Do daily. Reduces tearing risk, speeds recovery."},{n:"Prenatal yoga and stretching",s:true,d:"Focus on hip openers and breathing for labour."},{n:"Running or jogging",s:false,d:"High impact not recommended. Switch to walking."}]
+  };
+  const MH_DATA = [
+    {t:"First trimester anxiety",c:"Normal to feel anxious. Limit yourself to one pregnancy check per day - excessive googling increases anxiety."},
+    {t:"Second trimester emotional shifts",c:"Many mamas feel more settled. Body image concerns can surface as your bump grows. Your body is doing something miraculous."},
+    {t:"Third trimester fear of birth",c:"Fear of labour is very common. Birth classes, hypnobirthing, or speaking with your midwife all help."},
+    {t:"Postnatal depression awareness",c:"Up to 1 in 5 mamas experience PND. Signs: persistent sadness, disconnection from baby. Tell your doctor - it is treatable."}
+  ];
+  const WARN_U_DATA = ["Heavy vaginal bleeding (more than a period) - call emergency services","Severe abdominal pain that does not ease - go to hospital","Sudden severe headache with vision changes - may be preeclampsia","Baby stops or reduces movements after week 28 - call hospital","Labour signs before 37 weeks - regular painful contractions","Fever above 38 degrees C - seek medical attention","Burning pain when urinating - UTI needs treatment","Facial swelling with severe headache - call doctor immediately"];
+  const WARN_W_DATA = ["Mild spotting in first trimester - mention to doctor","Persistent nausea preventing food - hyperemesis gravidarum","One-sided abdominal pain - rule out ectopic pregnancy","Persistent itching on hands and feet - obstetric cholestasis","Unusual vaginal discharge - change in colour or smell","Excessive thirst and fatigue - gestational diabetes signs","Sudden severe swelling - may indicate preeclampsia"];
+  const ECO_DATA = [
+    {n:"Bamboo swaddle blankets",d:"Softer than cotton, hypoallergenic, biodegradable."},
+    {n:"Glass baby bottles",d:"No BPA, no microplastics. Safer for baby and planet."},
+    {n:"Organic cloth nappies",d:"Save up to 6,000 disposables per child."},
+    {n:"Natural baby skincare",d:"Avoid parabens and synthetic fragrance."},
+    {n:"Organic cot mattress",d:"Avoid flame retardants. Organic wool or latex is safer."},
+    {n:"Wooden and rubber toys",d:"Safe, beautiful alternatives to plastic."}
+  ];
+  const SOLAR_DATA = [
+    {n:"Solar nursery night light",d:"Charges via solar panel. Gentle amber glow - zero electricity cost.",s:"Save ~$30/year"},
+    {n:"Solar power bank / charger",d:"Keep phone and baby monitor charged for free.",s:"Charge devices free"},
+    {n:"Solar window fan for nursery",d:"Airflow using sunlight. No running cost, no cords near baby.",s:"Save ~$80/year"},
+    {n:"Solar fairy lights",d:"Beautiful nursery decor. Zero electricity. Charges on windowsill.",s:"100% free to run"},
+    {n:"Solar garden lights",d:"Safe automatic outdoor lighting for your home.",s:"Save ~$50/year"}
+  ];
+  const BUDGET_DATA = {
+    low:[{i:"Cot / bassinet (secondhand)",c:"$0-$80",eco:true},{i:"Organic cotton swaddle set",c:"$30-$60",eco:true},{i:"Cloth nappies starter (20)",c:"$80-$150",eco:true},{i:"Glass bottles (set of 4)",c:"$25-$50",eco:true},{i:"Baby carrier / wrap",c:"$40-$80",eco:false},{i:"Secondhand pram",c:"$0-$150",eco:true},{i:"Basic baby monitor",c:"$30-$60",eco:false}],
+    mid:[{i:"Cot with organic mattress",c:"$200-$400",eco:true},{i:"Full organic bedding set",c:"$80-$150",eco:true},{i:"Cloth nappies full set (30)",c:"$200-$300",eco:true},{i:"Glass bottles + accessories",c:"$80-$120",eco:true},{i:"Ergonomic baby carrier",c:"$100-$180",eco:false},{i:"Mid-range pram / travel system",c:"$400-$700",eco:false},{i:"Solar night light for nursery",c:"$20-$45",eco:true},{i:"Video baby monitor",c:"$80-$150",eco:false}],
+    high:[{i:"Designer cot with latex mattress",c:"$500-$1,200",eco:true},{i:"Full organic nursery furniture",c:"$800-$2,000",eco:true},{i:"Premium cloth nappy system",c:"$400-$600",eco:true},{i:"High-end breast pump",c:"$200-$400",eco:false},{i:"Premium baby carrier",c:"$180-$300",eco:false},{i:"Luxury pram / stroller",c:"$800-$2,000",eco:false},{i:"Full solar nursery lighting",c:"$80-$200",eco:true},{i:"Smart video monitor",c:"$200-$400",eco:false}]
+  };
+  const BTOT_DATA = {low:"~$300-$650",mid:"~$1,200-$2,200",high:"~$3,000-$7,000"};
+  const HOSP_DATA = {
+    hospital:["Medicare / health insurance card","Photo ID and birth plan","Comfortable pyjamas x2-3","Nursing bra and breast pads","Maternity pads","Toiletries and lip balm (labour essential!)","Phone charger and portable battery","Snacks for you and support person","Baby going-home outfit (newborn + 0-3 months)","Car seat installed before hospital","Nappy bag with 5 newborn nappies and wipes","Warm blanket for baby"],
+    home:["Set up birth kit with your midwife","Waterproof mattress protector","Towels and warm blankets for baby","Plastic sheets to protect floors","Good lighting and torch","Snacks and electrolyte drinks for labour","Partner confirmed and on standby","Emergency hospital backup plan"],
+    center:["Birth center intake paperwork done","Comfortable clothing for labour","Birth ball, aromatherapy, music if desired","Baby clothes and car seat for discharge","Snacks for a long labour"],
+    undecided:["Photo ID and birth plan","Comfortable loose pyjamas x2-3","Nursing bra and breast pads","Phone charger and power bank","Baby going-home outfit","Installed car seat - essential regardless","Snacks and electrolyte drinks"]
+  };
+
+  function cl(t) {
+    return (t||'').replace(/[^\x00-\x7F]/g, '').trim();
+  }
+
+  function np() {
+    doc.addPage();
+    doc.setFillColor(234,245,238); doc.rect(0,0,W,297,'F');
+    doc.setFillColor(255,255,255); doc.roundedRect(14,10,W-28,277,6,6,'F');
+    y = 22;
+  }
+
+  function hdr(title) {
+    if (y > 250) np();
+    doc.setFillColor(45,90,53);
+    doc.roundedRect(m, y, W-m*2, 9, 3, 3, 'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(255,255,255);
+    doc.text(cl(title), m+3, y+6.5);
+    y += 14;
+  }
+
+  function bl(text) {
+    if (y > 268) np();
+    const t = cl(text);
+    if (!t) return;
+    doc.setFillColor(122,158,126); doc.circle(m+3, y+2.2, 1.2, 'F');
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(50,80,55);
+    const lines = doc.splitTextToSize(t, W-m*2-10);
+    doc.text(lines, m+7, y+3);
+    y += lines.length * 5 + 1.5;
+  }
+
+  // COVER PAGE
+  doc.setFillColor(45,90,53); doc.rect(0,0,W,297,'F');
+  doc.setFillColor(184,212,187); doc.circle(175,55,75,'F');
+  doc.setFillColor(30,58,33); doc.circle(175,55,58,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(26); doc.setTextColor(255,255,255);
+  doc.text('EcoMamaPlanner', m, 78);
+  doc.setFont('helvetica','normal'); doc.setFontSize(11); doc.setTextColor(184,212,187);
+  doc.text('Your Complete Eco-Friendly Pregnancy Plan', m, 89);
+  doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(255,255,255);
+  doc.text(cl(name) + "'s Journey", m, 115);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(184,212,187);
+  doc.text('Week ' + week + ' of 40  -  ' + cl(tri), m, 127);
+  doc.text('Due: ' + cl(due ? due.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'}) : ''), m, 137);
+  [{val:String(week),sub:'Weeks along'},{val:String(weeksLeft),sub:'Weeks to go'},{val:String(daysLeft),sub:'Days left'},{val:cl(cur.size),sub:'Baby size now'}].forEach((s,i) => {
+    const x=m+i*44;
+    doc.setFillColor(255,255,255); doc.roundedRect(x,157,40,22,4,4,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(45,90,53);
+    doc.text(s.val, x+20, 167, {align:'center'});
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(122,158,126);
+    doc.text(s.sub, x+20, 175, {align:'center'});
+  });
+  doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(184,212,187);
+  doc.text('Generated ' + new Date().toLocaleDateString('en-AU') + '  -  ecomamaplanner.com', m, 290);
+
+  // PAGE 2 - OVERVIEW
+  np();
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(45,90,53);
+  doc.text('Week-by-Week Overview', m, y); y += 10;
+  hdr('Week ' + week + ' - Right now (' + cl(cur.size) + ')');
+  bl('Baby: ' + cl(cur.dev)); bl('You: ' + cl(cur.mama)); bl('Tip: ' + cl(cur.tip)); y += 3;
+  hdr('Week ' + nxt.w + ' - Coming up (' + cl(nxt.size) + ')');
+  bl(cl(nxt.dev)); bl('You: ' + cl(nxt.mama)); bl('Tip: ' + cl(nxt.tip)); y += 3;
+  hdr('Key milestones - all 40 weeks');
+  const AW_LOCAL = window.AW || [];
+  AW_LOCAL.filter((_,i) => [3,7,11,15,19,23,27,31,35,39].includes(i)).forEach(w => {
+    bl('Week ' + w.w + ' (' + cl(w.size) + '): ' + cl(w.dev));
+  });
+
+  // PAGE 3 - DEVELOPMENT & BODY
+  np();
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(45,90,53);
+  doc.text('Baby Development & Your Body', m, y); y += 10;
+  const tn = triKey==='t1'?'First':triKey==='t2'?'Second':'Third';
+  hdr('Baby development - ' + tn + ' Trimester');
+  AW_LOCAL.filter(w => triKey==='t1'?w.w<=13:triKey==='t2'?(w.w>=14&&w.w<=27):w.w>=28).slice(0,6).forEach(w => {
+    bl('Week ' + w.w + ' (' + cl(w.size) + '): ' + cl(w.dev));
+  });
+  y += 3;
+  hdr('Your body - ' + tn + ' Trimester');
+  (BODY_DATA[triKey]||[]).forEach(c => bl(c));
+  y += 3;
+  hdr('Self-care tips');
+  ['Sleep on your left side - improves blood flow to baby','Moisturise belly, breasts, and thighs daily','Wear a supportive maternity bra','Take prenatal vitamins with food to reduce nausea','Drink 2.5+ litres of water daily'].forEach(t => bl(t));
+
+  // PAGE 4 - NUTRITION & EXERCISE
+  np();
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(45,90,53);
+  doc.text('Nutrition & Exercise', m, y); y += 10;
+  hdr('Eat plenty - ' + tn + ' Trimester');
+  (EAT_DATA[triKey]||[]).forEach(n => bl(n));
+  y += 3;
+  hdr('Avoid or limit');
+  (AVOID_DATA[triKey]||[]).forEach(a => bl(a));
+  y += 3;
+  hdr('Supplements');
+  ['Folic acid 400mcg (through week 12)','Vitamin D 1000-2000 IU','Omega-3 DHA 200mg - baby brain development','Iodine 150mcg - thyroid and brain support','Iron if blood test shows low ferritin'].forEach(s => bl(s));
+  y += 3;
+  hdr('Safe exercise - ' + tn + ' Trimester');
+  (EX_DATA[triKey]||[]).filter(e=>e.s).forEach(e => bl(e.n + ': ' + e.d));
+  hdr('Avoid this trimester');
+  (EX_DATA[triKey]||[]).filter(e=>!e.s).forEach(e => bl(e.n + ': ' + e.d));
+
+  // PAGE 5 - WELLNESS & WARNINGS
+  np();
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(45,90,53);
+  doc.text('Mental Wellness & Warning Signs', m, y); y += 10;
+  hdr('Mental health & emotional wellness');
+  MH_DATA.forEach(mh => { bl(mh.t + ': ' + mh.c); y += 1; });
+  y += 3;
+  hdr('SEEK EMERGENCY HELP IMMEDIATELY for:');
+  doc.setTextColor(191,54,12);
+  WARN_U_DATA.forEach(w => bl(w));
+  doc.setTextColor(50,80,55);
+  y += 3;
+  hdr('Monitor and mention to your doctor');
+  WARN_W_DATA.forEach(w => bl(w));
+  y += 3;
+  hdr('What IS normal');
+  ['Mild nausea and fatigue (1st trimester)','Occasional mild cramping as uterus stretches','Braxton Hicks contractions (painless, irregular)','Light spotting after sex - very common','Round ligament pain on sides of belly','Mild swelling in feet at end of day'].forEach(w => bl(w));
+
+  // PAGE 6 - ECO & SOLAR
+  np();
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(45,90,53);
+  doc.text('Eco-Friendly & Solar Nursery Guide', m, y); y += 10;
+  hdr('Eco-friendly product picks');
+  ECO_DATA.forEach(p => bl(p.n + ': ' + p.d));
+  y += 3;
+  hdr('Why choose eco-friendly?');
+  ['Safer for baby - no harsh chemicals or toxins','Better for the planet - less waste and pollution','Often cheaper long-term (e.g. cloth nappies save thousands)','Many eco products are more durable and longer-lasting'].forEach(t => bl(t));
+  y += 3;
+  hdr('Solar-powered nursery - save electricity for free');
+  SOLAR_DATA.forEach(p => bl(p.n + ': ' + p.d + ' - ' + p.s));
+  y += 3;
+  hdr('How much can solar products save?');
+  bl('A full solar nursery setup (lights, fan, charger) can save $150-$200 per year in electricity costs.');
+  bl('Solar products pay for themselves within months and then run completely free.');
+  bl('No ongoing costs, no cords near baby, and better for the environment.');
+
+  // PAGE 7 - BUDGET & HOSPITAL
+  np();
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(45,90,53);
+  doc.text('Budget Tracker & Hospital Bag', m, y); y += 10;
+  const budgetItems = BUDGET_DATA[budgetRange] || BUDGET_DATA['mid'];
+  const budgetLabel = budgetRange==='low'?'Budget-conscious':budgetRange==='mid'?'Moderate':'Generous';
+  hdr('Baby budget - ' + budgetLabel + ' plan');
+  budgetItems.forEach(i => bl(i.i + ': ' + i.c + (i.eco?' (eco-friendly)':'')));
+  bl('Estimated total: ' + (BTOT_DATA[budgetRange]||'~$1,200-$2,200'));
+  y += 3;
+  hdr('Eco money-saving tips');
+  ['Cloth nappies save $3,000-$5,000 vs disposables over 2 years','Buy secondhand prams and cots - safe when properly checked','Solar products have zero running costs after purchase','Breastfeeding saves $2,000-$3,000 in formula costs in year one','Bamboo and organic cotton last longer than conventional fabrics'].forEach(t => bl(t));
+  y += 3;
+  const hospList = HOSP_DATA[birthPref] || HOSP_DATA['hospital'];
+  const hospTitle = birthPref==='home'?'Home Birth Kit':birthPref==='center'?'Birth Centre Bag':'Hospital Bag';
+  hdr(hospTitle + ' checklist');
+  hospList.forEach(i => bl(i));
+  y += 3;
+  hdr('When to go to hospital - 5-1-1 rule');
+  ['Contractions 5 min apart, lasting 1 min, for 1 hour','Waters break - any colour fluid','Bloody show - mucus with blood','Baby movements significantly reduce after week 28','Any concern - always trust your instincts'].forEach(w => bl(w));
+  y += 3;
+  hdr('Getting there');
+  ['Car seat installed BEFORE due date - get it professionally checked','Route to hospital planned - including nighttime route','Keep fuel tank above half from week 36 onwards','Backup driver arranged in case partner is unavailable'].forEach(t => bl(t));
+
+  // FOOTER
+  const tp = doc.getNumberOfPages();
+  for (let i=1; i<=tp; i++) {
+    doc.setPage(i);
+    doc.setFillColor(45,90,53); doc.rect(14,286,W-28,6,'F');
+    doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(184,212,187);
+    doc.text('EcoMamaPlanner.com  -  ' + cl(name) + "'s Plan  -  Page " + i + ' of ' + tp, W/2, 290, {align:'center'});
+  }
+
+  doc.save('EcoMamaPlanner-' + cl(name).replace(/\s+/g,'-') + '-Week' + week + '.pdf');
+}
+</script>
+</body>
+</html>

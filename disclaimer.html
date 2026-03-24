@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="favicon-32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclaimer & Terms — EcoMamaPlanner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#7A9E7E;--sage-light:#B8D4BB;--sage-pale:#EEF5EF;--forest:#2D5A35;--forest-dark:#1C3A21;--cream:#FAF8F4;--warm:#FFFFFF;--text-dark:#1A2E1C;--text-mid:#4A6B4E;--text-light:#7A9E7E;--border:#DDE8DE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(250,248,244,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--forest);text-decoration:none;}
+.logo span{color:var(--sage);}
+  .logo img{height:36px;width:auto;display:inline-block;vertical-align:middle;margin-right:8px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text-mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--forest);}
+.nav-cta{background:var(--forest);color:#fff;padding:10px 22px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;}
+.ad-bar{margin-top:80px;background:#f0f0f0;border-bottom:1px solid var(--border);text-align:center;padding:10px;font-size:11px;color:#aaa;letter-spacing:.05em;}
+
+.page-hero{padding:72px 48px 56px;background:linear-gradient(135deg,var(--forest-dark),var(--forest));color:white;text-align:center;}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,52px);font-weight:300;margin-bottom:14px;}
+.page-hero h1 em{font-style:italic;color:var(--sage-light);}
+.page-hero p{font-size:14px;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto;font-weight:300;line-height:1.7;}
+.page-hero-date{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;font-size:12px;color:rgba(255,255,255,.7);margin-bottom:20px;}
+
+.doc-layout{display:grid;grid-template-columns:240px 1fr;gap:48px;padding:64px 48px;max-width:1100px;margin:0 auto;}
+
+/* STICKY TOC */
+.toc{position:sticky;top:100px;align-self:start;}
+.toc-title{font-size:12px;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.toc-list a{font-size:13px;color:var(--text-mid);text-decoration:none;padding:6px 12px;border-radius:8px;display:block;transition:all .2s;border-left:2px solid transparent;}
+.toc-list a:hover{color:var(--forest);background:var(--sage-pale);border-left-color:var(--sage);}
+.toc-list a.active{color:var(--forest);background:var(--sage-pale);border-left-color:var(--forest);font-weight:500;}
+.toc-divider{border:none;border-top:1px solid var(--border);margin:12px 0;}
+
+/* CONTENT */
+.doc-content{}
+.important-box{background:#FFF8E8;border:1px solid #F0D890;border-radius:16px;padding:22px 24px;margin-bottom:40px;display:flex;gap:14px;align-items:flex-start;}
+.important-box .icon{font-size:24px;flex-shrink:0;}
+.important-box h4{font-size:14px;font-weight:600;color:#7A5C00;margin-bottom:6px;}
+.important-box p{font-size:13px;color:#8A6800;font-weight:300;line-height:1.6;}
+
+.doc-section{margin-bottom:48px;scroll-margin-top:100px;}
+.doc-section h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--forest-dark);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.doc-section h3{font-size:15px;font-weight:500;color:var(--text-dark);margin:20px 0 8px;}
+.doc-section p{font-size:14px;color:var(--text-mid);font-weight:300;line-height:1.8;margin-bottom:12px;}
+.doc-section ul{padding-left:18px;margin-bottom:14px;}
+.doc-section ul li{font-size:14px;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:5px;}
+.doc-section a{color:var(--forest);text-decoration:none;font-weight:500;}
+.doc-section a:hover{text-decoration:underline;}
+.highlight-box{background:var(--sage-pale);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:16px 0;}
+.highlight-box p{margin:0;font-size:13px;}
+.warn-box{background:#FFF3E0;border:1px solid #FFB74D;border-radius:12px;padding:18px 20px;margin:16px 0;}
+.warn-box p{margin:0;font-size:13px;color:#BF360C;}
+
+footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;margin-top:32px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
+.footer-links{display:flex;gap:22px;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:rgba(255,255,255,.8);}
+
+@media(max-width:768px){
+  nav{padding:14px 18px;}.nav-links{display:none;}
+  .page-hero{padding:56px 18px 40px;}
+  .doc-layout{grid-template-columns:1fr;padding:36px 18px;gap:24px;}
+  .toc{position:static;}
+  footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYCKQ6JFES"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LYCKQ6JFES');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8309397117402042" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="logo.png" alt="EcoMamaPlanner logo">Eco<span>Mama</span>Planner</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="disclaimer.html" style="color:var(--forest);font-weight:500">Disclaimer</a></li>
+  </ul>
+  <a href="index.html#generator" class="nav-cta">Create my plan →</a>
+</nav>
+
+<div class="ad-bar">ADVERTISEMENT — Google AdSense 728×90 leaderboard</div>
+
+<div class="page-hero">
+  <div class="page-hero-date">Last updated: March 2026</div>
+  <h1>Disclaimer &<br><em>Terms of Use</em></h1>
+  <p>Please read this page carefully before using EcoMamaPlanner.com. By using our website, you agree to these terms.</p>
+</div>
+
+<div class="doc-layout">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><a href="#medical" onclick="setActive(this)">Medical disclaimer</a></li>
+      <li><a href="#general" onclick="setActive(this)">General disclaimer</a></li>
+      <li><a href="#affiliate" onclick="setActive(this)">Affiliate disclosure</a></li>
+      <li><a href="#ads" onclick="setActive(this)">Advertising</a></li>
+      <li><a href="#ai-content" onclick="setActive(this)">AI-generated content</a></li>
+      <li><a href="#pdf" onclick="setActive(this)">PDF plans & refunds</a></li>
+      <li><a href="#privacy" onclick="setActive(this)">Privacy & data</a></li>
+      <li><a href="#copyright" onclick="setActive(this)">Copyright</a></li>
+      <li><a href="#terms" onclick="setActive(this)">Terms of use</a></li>
+      <li><a href="#contact-disc" onclick="setActive(this)">Contact us</a></li>
+    </ul>
+    <hr class="toc-divider">
+    <div style="font-size:11px;color:var(--text-light);line-height:1.6">Questions? <a href="contact.html" style="color:var(--forest);font-weight:500">Contact us</a> and we'll help.</div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="doc-content">
+
+    <div class="important-box">
+      <div class="icon">⚠️</div>
+      <div>
+        <h4>Important — please read first</h4>
+        <p>EcoMamaPlanner.com provides general pregnancy information and planning tools for educational purposes only. We are not medical professionals. Nothing on this website should be considered medical advice. Always consult your doctor, midwife, or qualified healthcare provider for any health concerns during pregnancy.</p>
+      </div>
+    </div>
+
+    <div class="doc-section" id="medical">
+      <h2>1. Medical disclaimer</h2>
+      <p>The content on EcoMamaPlanner.com — including all articles, blog posts, pregnancy plans, checklists, nutrition guides, exercise recommendations, and any other information — is provided for <strong>general informational and educational purposes only</strong>.</p>
+      <p>This website is <strong>not a substitute for professional medical advice, diagnosis, or treatment</strong>. Never disregard professional medical advice or delay seeking it because of something you have read on this website.</p>
+      <div class="warn-box"><p>⚠️ If you are experiencing a medical emergency, call emergency services (000 in Australia, 911 in the USA, 999 in the UK) immediately. Do not rely on this website in an emergency situation.</p></div>
+      <h3>Our content does not:</h3>
+      <ul>
+        <li>Replace the advice of your doctor, midwife, or healthcare provider</li>
+        <li>Constitute a doctor-patient relationship between EcoMamaPlanner and any user</li>
+        <li>Account for your individual health history, medical conditions, or circumstances</li>
+        <li>Guarantee specific health outcomes for you or your baby</li>
+      </ul>
+      <p>Every pregnancy is different. The information we provide is based on general guidelines and publicly available health resources. Always seek personalised advice from a qualified healthcare professional for your specific situation.</p>
+      <div class="highlight-box"><p>🌿 The warning signs, nutrition advice, exercise recommendations, and supplement information on this site are based on widely accepted pregnancy guidelines but are provided as general education only — not as personal medical recommendations.</p></div>
+    </div>
+
+    <div class="doc-section" id="general">
+      <h2>2. General disclaimer</h2>
+      <p>While we make every effort to ensure the accuracy and completeness of the information on EcoMamaPlanner.com, we make <strong>no warranties or representations</strong> — express or implied — about the completeness, accuracy, reliability, suitability, or availability of the information, products, services, or related graphics contained on this website.</p>
+      <p>EcoMamaPlanner.com and its owners, contributors, and affiliates accept no liability for any loss or damage arising from your use of this website or reliance on any information provided herein.</p>
+      <h3>Accuracy of information</h3>
+      <p>Pregnancy guidelines and medical recommendations change over time. While we strive to keep our content up to date, some information may not reflect the most current research or guidelines. Always cross-reference important health decisions with your healthcare provider.</p>
+    </div>
+
+    <div class="doc-section" id="affiliate">
+      <h2>3. Affiliate disclosure</h2>
+      <p>EcoMamaPlanner.com participates in affiliate marketing programs, including the <strong>Amazon Associates Program</strong> and other affiliate networks. This means we may earn a small commission when you click on certain product links and make a purchase — at <strong>no additional cost to you</strong>.</p>
+      <div class="highlight-box"><p>💚 We only recommend products we genuinely believe in and that align with our eco-friendly values. Affiliate commissions help us keep the website free for all mamas. Thank you for your support!</p></div>
+      <p>Affiliate links are how many free websites — including EcoMamaPlanner — sustain themselves without charging users. We are transparent about this and it does not influence our editorial independence. We will never recommend a product solely because it pays a commission.</p>
+    </div>
+
+    <div class="doc-section" id="ads">
+      <h2>4. Advertising</h2>
+      <p>EcoMamaPlanner.com displays advertisements served by <strong>Google AdSense</strong> and potentially other advertising partners. These ads help keep our tools and content free for all users.</p>
+      <p>Advertisements displayed on this website are served automatically by Google's algorithms and <strong>do not represent endorsements</strong> by EcoMamaPlanner. We do not control the specific advertisements shown and are not responsible for their content.</p>
+      <p>If you see an advertisement that is inappropriate or misleading, please <a href="contact.html">contact us</a> and we will report it.</p>
+    </div>
+
+    <div class="doc-section" id="ai-content">
+      <h2>5. AI-generated content</h2>
+      <p>EcoMamaPlanner.com uses <strong>AI technology (Claude by Anthropic)</strong> to generate blog articles and other content. While AI-generated content is reviewed for general quality, it may contain inaccuracies, outdated information, or errors.</p>
+      <h3>Important limitations of AI content:</h3>
+      <ul>
+        <li>AI-generated articles are for general information only and are not medically reviewed by healthcare professionals</li>
+        <li>AI content may not reflect the most current medical guidelines or research</li>
+        <li>Always verify health-related information with your doctor or midwife</li>
+        <li>AI-generated content should never replace professional medical advice</li>
+      </ul>
+      <p>We label AI-generated content on our blog and are committed to transparency about how our content is produced.</p>
+    </div>
+
+    <div class="doc-section" id="pdf">
+      <h2>6. PDF plans & refund policy</h2>
+      <p>EcoMamaPlanner offers a paid <strong>Full PDF Pregnancy Plan</strong> for $4.99 (one-time payment). By purchasing this product, you agree to the following:</p>
+      <h3>What you receive:</h3>
+      <ul>
+        <li>A personalized, AI-generated PDF pregnancy plan based on the information you provide</li>
+        <li>The plan is generated at the time of purchase and delivered as a digital download</li>
+        <li>The plan is for personal use only and may not be resold or redistributed</li>
+      </ul>
+      <h3>Refund policy:</h3>
+      <p>We offer a <strong>full refund within 7 days</strong> of purchase if you are not satisfied with your PDF plan. To request a refund, <a href="contact.html">contact us</a> with your order details. Refunds are processed within 3–5 business days.</p>
+      <div class="highlight-box"><p>💚 Your satisfaction matters to us. If something went wrong with your plan — wrong dates, missing information, or technical issues — please contact us and we will fix it or refund you promptly.</p></div>
+    </div>
+
+    <div class="doc-section" id="privacy">
+      <h2>7. Privacy & data</h2>
+      <p>We take your privacy seriously. Here is how we handle your information:</p>
+      <h3>Information you enter into the planner:</h3>
+      <ul>
+        <li>Your name, due date, and preferences entered into our pregnancy plan generator are used <strong>only to generate your plan</strong></li>
+        <li>This information is <strong>not stored on our servers</strong> and is not shared with third parties</li>
+        <li>All plan generation happens in your browser — your personal data never leaves your device</li>
+      </ul>
+      <h3>Information collected automatically:</h3>
+      <ul>
+        <li>Google AdSense and Google Analytics may collect anonymised usage data (pages visited, time on site)</li>
+        <li>This data is used to improve our website and serve relevant advertisements</li>
+        <li>We do not collect or sell your personal information</li>
+      </ul>
+      <h3>Cookies:</h3>
+      <p>This website uses cookies from Google AdSense and Google Analytics. By using this website, you consent to the use of these cookies. You can disable cookies in your browser settings at any time.</p>
+      <h3>Email newsletter:</h3>
+      <p>If you subscribe to our newsletter, your email address is stored securely with our email provider (Mailchimp or similar). You can unsubscribe at any time using the link in any email we send.</p>
+    </div>
+
+    <div class="doc-section" id="copyright">
+      <h2>8. Copyright</h2>
+      <p>All content on EcoMamaPlanner.com — including text, design, graphics, and the pregnancy plan tool — is owned by EcoMamaPlanner and protected by copyright.</p>
+      <ul>
+        <li>You may share links to our articles and pages</li>
+        <li>You may print or save your personal pregnancy plan PDF for your own use</li>
+        <li>You may not reproduce, republish, or sell our content without written permission</li>
+        <li>Blog articles generated using our AI tool may be used for personal reference but may not be republished commercially without permission</li>
+      </ul>
+      <p>To request permission for content use, please <a href="contact.html">contact us</a>.</p>
+    </div>
+
+    <div class="doc-section" id="terms">
+      <h2>9. Terms of use</h2>
+      <p>By using EcoMamaPlanner.com, you agree to the following terms:</p>
+      <ul>
+        <li>You are at least 18 years of age or accessing this site with parental consent</li>
+        <li>You will not use this website for any unlawful purpose</li>
+        <li>You understand that the content is for informational purposes only and not medical advice</li>
+        <li>You will not attempt to copy, scrape, or reproduce our content or tools</li>
+        <li>You will not attempt to circumvent any security features of this website</li>
+        <li>EcoMamaPlanner reserves the right to modify these terms at any time — continued use of the site constitutes acceptance of updated terms</li>
+      </ul>
+      <h3>Limitation of liability:</h3>
+      <p>To the fullest extent permitted by law, EcoMamaPlanner.com and its owners shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of this website or the information contained herein.</p>
+      <h3>Governing law:</h3>
+      <p>These terms are governed by the laws of Australia. Any disputes shall be subject to the exclusive jurisdiction of the courts of Australia.</p>
+    </div>
+
+    <div class="doc-section" id="contact-disc">
+      <h2>10. Contact us</h2>
+      <p>If you have any questions about this disclaimer, our terms, or how we handle your data, please don't hesitate to get in touch:</p>
+      <div class="highlight-box">
+        <p>📧 <strong>Email:</strong> <a href="mailto:hello@ecomamaplanner.com">hello@ecomamaplanner.com</a><br>
+        📝 <strong>Contact form:</strong> <a href="contact.html">ecomamaplanner.com/contact</a><br>
+        ⏱ <strong>Response time:</strong> Within 24–48 hours on weekdays</p>
+      </div>
+      <p style="margin-top:20px;font-size:13px;color:var(--text-light)">This disclaimer was last updated in March 2026. We reserve the right to update this page at any time. Material changes will be noted at the top of this page with an updated date.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="EcoMamaPlanner" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;filter:brightness(0) invert(1) opacity(0.8);">EcoMamaPlanner</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+  <div style="font-size:12px">© 2026 EcoMamaPlanner.com — Made with 💚</div>
+</footer>
+
+<script>
+function setActive(el) {
+  document.querySelectorAll('.toc-list a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+// Auto-highlight TOC on scroll
+const sections = document.querySelectorAll('.doc-section');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  document.querySelectorAll('.toc-list a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

@@ -913,6 +913,9 @@ function buildHospital(pref) {
 // ── PDF GENERATION ────────────────────────────────────────────────────────────
 
 function buildPDF(name, week, weeksLeft, daysLeft, tri, triKey, due, cur, nxt, birthPref, budgetRange) {
+  // Ensure name is properly capitalized
+  name = (name||'Mama').trim();
+  name = name.charAt(0).toUpperCase() + name.slice(1);
   const {jsPDF} = window.jspdf;
   const doc = new jsPDF({unit:'mm', format:'a4'});
   const W=210, m=18;
@@ -1041,47 +1044,47 @@ function buildPDF(name, week, weeksLeft, daysLeft, tri, triKey, due, cur, nxt, b
   hdr('Key milestones - all 40 weeks');
   const AW_LOCAL = [
   {w:1, size:"sesame seed", dev:"Fertilisation may have occurred. The embryo is a tiny cluster of cells.", mama:"You may not know you're pregnant yet. Your last period just ended.", tip:"Start taking folic acid (400mcg daily) if not already."},
-  {w:2, size:"poppy seed", dev:"Ovulation occurs. The egg travels to the uterus for implantation.", mama:"Possible light spotting (implantation bleeding) — totally normal.", tip:"Cut out alcohol and reduce caffeine now."},
+  {w:2, size:"poppy seed", dev:"Ovulation occurs. The egg travels to the uterus for implantation.", mama:"Possible light spotting (implantation bleeding) - totally normal.", tip:"Cut out alcohol and reduce caffeine now."},
   {w:3, size:"sesame seed", dev:"Implantation complete. The embryo releases pregnancy hormones.", mama:"Breasts may feel tender. Fatigue begins.", tip:"Book a GP or OB appointment to confirm pregnancy."},
   {w:4, size:"poppy seed", dev:"Heart and neural tube beginning to form.", mama:"Missed period. Home pregnancy test will now be positive.", tip:"Confirm pregnancy with a blood test for accurate hCG levels."},
   {w:5, size:"apple seed", dev:"Heart starts beating. Brain, spinal cord forming rapidly.", mama:"Nausea begins for many mamas. Heightened sense of smell.", tip:"Eat small frequent meals to help with nausea."},
-  {w:6, size:"lentil", dev:"Heartbeat detectable by ultrasound (~110 bpm). Arm and leg buds appear.", mama:"Morning sickness often peaks. Extreme fatigue is normal.", tip:"Book your first ultrasound (6–8 weeks)."},
-  {w:7, size:"blueberry", dev:"Hands and feet forming. Brain growing rapidly — 100 new cells/minute.", mama:"Bloating, frequent urination, mood swings increase.", tip:"Avoid raw fish, deli meats, unpasteurised cheese."},
-  {w:8, size:"raspberry", dev:"All major organs forming. Fingers and toes visible. Baby can move.", mama:"Uterus is now the size of a grapefruit. Cramping is common.", tip:"Ask your doctor about first trimester screening (10–13 wks)."},
-  {w:9, size:"cherry", dev:"Baby's face is forming — eyelids, nose, mouth. Muscles developing.", mama:"Clothes may feel tighter. Bra size may increase already.", tip:"Consider a prenatal yoga class — great for body and mind."},
+  {w:6, size:"lentil", dev:"Heartbeat detectable by ultrasound (~110 bpm). Arm and leg buds appear.", mama:"Morning sickness often peaks. Extreme fatigue is normal.", tip:"Book your first ultrasound (6-8 weeks)."},
+  {w:7, size:"blueberry", dev:"Hands and feet forming. Brain growing rapidly - 100 new cells/minute.", mama:"Bloating, frequent urination, mood swings increase.", tip:"Avoid raw fish, deli meats, unpasteurised cheese."},
+  {w:8, size:"raspberry", dev:"All major organs forming. Fingers and toes visible. Baby can move.", mama:"Uterus is now the size of a grapefruit. Cramping is common.", tip:"Ask your doctor about first trimester screening (10-13 wks)."},
+  {w:9, size:"cherry", dev:"Baby's face is forming - eyelids, nose, mouth. Muscles developing.", mama:"Clothes may feel tighter. Bra size may increase already.", tip:"Consider a prenatal yoga class - great for body and mind."},
   {w:10, size:"strawberry", dev:"Fingerprints forming. Baby can open and close fists.", mama:"Round ligament pain may begin as uterus grows.", tip:"First trimester screening window opens (nuchal translucency scan)."},
-  {w:11, size:"fig", dev:"Teeth buds forming. Baby is moving actively (you can't feel it yet).", mama:"Nausea may start to ease. Hair and nails growing faster.", tip:"Stay hydrated — aim for 2.5L water daily."},
-  {w:12, size:"lime", dev:"Reflexes developing. Baby can yawn, stretch, and suck thumb.", mama:"First trimester ends! Miscarriage risk drops significantly.", tip:"Safe to share your news with family and friends 🎉"},
+  {w:11, size:"fig", dev:"Teeth buds forming. Baby is moving actively (you can't feel it yet).", mama:"Nausea may start to ease. Hair and nails growing faster.", tip:"Stay hydrated - aim for 2.5L water daily."},
+  {w:12, size:"lime", dev:"Reflexes developing. Baby can yawn, stretch, and suck thumb.", mama:"First trimester ends! Miscarriage risk drops significantly.", tip:"Safe to share your news with family and friends !"},
   {w:13, size:"pea pod", dev:"Intestines moving into place. Vocal cords forming. Sex may be visible soon.", mama:"Energy levels typically improve. Bump may start showing.", tip:"Start moisturising your belly daily to support skin elasticity."},
-  {w:14, size:"lemon", dev:"Baby can squint, frown, and make facial expressions.", mama:"Second trimester begins. Most mamas feel a big energy boost.", tip:"Book your anatomy scan (typically at 18–20 weeks)."},
+  {w:14, size:"lemon", dev:"Baby can squint, frown, and make facial expressions.", mama:"Second trimester begins. Most mamas feel a big energy boost.", tip:"Book your anatomy scan (typically at 18-20 weeks)."},
   {w:15, size:"apple", dev:"Baby is practicing breathing movements using amniotic fluid.", mama:"You may start feeling baby flutters (quickening) soon.", tip:"Sleep on your left side to improve blood flow to baby."},
-  {w:16, size:"avocado", dev:"Baby's eyes are moving. Ears fully formed — baby can hear now!", mama:"Your bump is showing. Round ligament pains may intensify.", tip:"Talk and play music to baby — they can hear you!"},
-  {w:17, size:"pear", dev:"Fat stores developing under skin. Skeleton hardening from cartilage to bone.", mama:"Back pain and sciatic nerve pain may begin.", tip:"Consider a pregnancy pillow — it's a game changer for sleep."},
+  {w:16, size:"avocado", dev:"Baby's eyes are moving. Ears fully formed - baby can hear now!", mama:"Your bump is showing. Round ligament pains may intensify.", tip:"Talk and play music to baby - they can hear you!"},
+  {w:17, size:"pear", dev:"Fat stores developing under skin. Skeleton hardening from cartilage to bone.", mama:"Back pain and sciatic nerve pain may begin.", tip:"Consider a pregnancy pillow - it's a game changer for sleep."},
   {w:18, size:"bell pepper", dev:"Baby is very active, flipping and turning. Fingerprints complete.", mama:"You should feel baby movements clearly now ('quickening').", tip:"Gentle swimming or walking is ideal exercise this week."},
-  {w:19, size:"mango", dev:"Vernix caseosa (waxy coating) protects baby's skin in amniotic fluid.", mama:"Skin changes — 'pregnancy glow' or melasma (dark patches) possible.", tip:"Use SPF50 sunscreen daily to prevent melasma worsening."},
-  {w:20, size:"banana", dev:"Halfway! Baby has eyebrows, eyelashes, nails. Movements very strong.", mama:"Anatomy scan this week — checks all organs and confirms gender if wanted.", tip:"Begin your eco nursery planning checklist."},
-  {w:21, size:"carrot", dev:"Baby can swallow amniotic fluid, helping digestive system develop.", mama:"Braxton Hicks contractions may begin — painless practice contractions.", tip:"Start researching childcare and parental leave options."},
-  {w:22, size:"papaya", dev:"Sense of touch developing. Baby grabs the umbilical cord!", mama:"Stretch marks may appear. Itching around the belly is normal.", tip:"Drink plenty of water — helps reduce stretch mark severity."},
-  {w:23, size:"grapefruit", dev:"Baby's face fully formed. Rapid brain and lung development continues.", mama:"Blood pressure should be monitored closely now.", tip:"Watch for signs of anaemia — fatigue, pale skin, dizziness."},
-  {w:24, size:"corn", dev:"Viability milestone. Baby has a real chance of survival if born now.", mama:"Glucose tolerance test (gestational diabetes check) typically this week.", tip:"Start your hospital bag list — don't leave it too late!"},
+  {w:19, size:"mango", dev:"Vernix caseosa (waxy coating) protects baby's skin in amniotic fluid.", mama:"Skin changes - 'pregnancy glow' or melasma (dark patches) possible.", tip:"Use SPF50 sunscreen daily to prevent melasma worsening."},
+  {w:20, size:"banana", dev:"Halfway! Baby has eyebrows, eyelashes, nails. Movements very strong.", mama:"Anatomy scan this week - checks all organs and confirms gender if wanted.", tip:"Begin your eco nursery planning checklist."},
+  {w:21, size:"carrot", dev:"Baby can swallow amniotic fluid, helping digestive system develop.", mama:"Braxton Hicks contractions may begin - painless practice contractions.", tip:"Start researching childcare and parental leave options."},
+  {w:22, size:"papaya", dev:"Sense of touch developing. Baby grabs the umbilical cord!", mama:"Stretch marks may appear. Itching around the belly is normal.", tip:"Drink plenty of water - helps reduce stretch mark severity."},
+  {w:23, size:"grapefruit", dev:"Baby's face fully formed. Rapid brain and lung development continues.", mama:"Blood pressure should be monitored closely now.", tip:"Watch for signs of anaemia - fatigue, pale skin, dizziness."},
+  {w:24, size:"corn", dev:"Viability milestone. Baby has a real chance of survival if born now.", mama:"Glucose tolerance test (gestational diabetes check) typically this week.", tip:"Start your hospital bag list - don't leave it too late!"},
   {w:25, size:"cauliflower", dev:"Baby responds to familiar voices. Capillaries forming under skin (baby turns pink).", mama:"Heartburn and indigestion often worsen as uterus grows.", tip:"Eat smaller meals and avoid lying down after eating."},
   {w:26, size:"scallion", dev:"Eyes can now open and close. Baby has hair on its head.", mama:"Hands and feet may swell. Carpal tunnel syndrome possible.", tip:"Elevate feet when resting. Avoid standing for long periods."},
   {w:27, size:"lettuce", dev:"Brain activity increasing. Baby develops sleep-wake cycles.", mama:"Third trimester approaching. Breathlessness becomes common.", tip:"Practice relaxation and breathing techniques for labour."},
-  {w:28, size:"eggplant", dev:"Third trimester! Baby can blink, cough, hiccup. Lungs nearly mature.", mama:"Check-ups now every 2 weeks. Back pain likely intensifying.", tip:"Begin pelvic floor exercises daily — critical for birth recovery."},
-  {w:29, size:"butternut squash", dev:"Muscles and lungs maturing fast. Baby gaining 200g per week.", mama:"Frequent urination returns as baby presses on bladder.", tip:"Plan your birth preferences — write your birth plan now."},
+  {w:28, size:"eggplant", dev:"Third trimester! Baby can blink, cough, hiccup. Lungs nearly mature.", mama:"Check-ups now every 2 weeks. Back pain likely intensifying.", tip:"Begin pelvic floor exercises daily - critical for birth recovery."},
+  {w:29, size:"butternut squash", dev:"Muscles and lungs maturing fast. Baby gaining 200g per week.", mama:"Frequent urination returns as baby presses on bladder.", tip:"Plan your birth preferences - write your birth plan now."},
   {w:30, size:"cabbage", dev:"Baby's bone marrow fully producing red blood cells.", mama:"Fatigue returns. Difficulty sleeping is very common now.", tip:"Use a pregnancy pillow to improve sleep comfort."},
   {w:31, size:"coconut", dev:"All five senses functioning. Baby can recognise your voice clearly.", mama:"Colostrum (early breast milk) may leak from nipples.", tip:"Prepare breast pads and research breastfeeding support groups."},
-  {w:32, size:"squash", dev:"Baby practicing breathing regularly. Fingernails fully grown.", mama:"Braxton Hicks may be stronger. Normal unless rhythmic or painful.", tip:"Pack your hospital bag this week — don't wait!"},
+  {w:32, size:"squash", dev:"Baby practicing breathing regularly. Fingernails fully grown.", mama:"Braxton Hicks may be stronger. Normal unless rhythmic or painful.", tip:"Pack your hospital bag this week - don't wait!"},
   {w:33, size:"pineapple", dev:"Baby's immune system developing. Skull bones remain soft for birth.", mama:"You may feel very heavy and tired. Swelling is common.", tip:"Attend a birth preparation class if you haven't already."},
   {w:34, size:"cantaloupe", dev:"Central nervous system and lungs nearly fully mature.", mama:"Braxton Hicks increasing. Pelvic pressure as baby descends.", tip:"Confirm your birth plan with your midwife or OB."},
-  {w:35, size:"honeydew", dev:"Baby is nearly full-term. Most organ development complete.", mama:"You may need to slow down. Rest as much as possible.", tip:"Prepare freezer meals now — you'll thank yourself after birth!"},
+  {w:35, size:"honeydew", dev:"Baby is nearly full-term. Most organ development complete.", mama:"You may need to slow down. Rest as much as possible.", tip:"Prepare freezer meals now - you'll thank yourself after birth!"},
   {w:36, size:"romaine lettuce", dev:"Baby is considered early term. May turn head-down (engagement).", mama:"Easier to breathe as baby drops. More pelvic pressure.", tip:"Weekly midwife visits begin. Install your car seat now."},
   {w:37, size:"Swiss chard", dev:"Full-term in 3 more weeks. Baby is practicing breathing, sucking, gripping.", mama:"Cervix may begin to soften and dilate.", tip:"Review labour signs: regular contractions, water breaking, bloody show."},
   {w:38, size:"pumpkin", dev:"Baby has a firm grasp. Lanugo (fine hair) mostly shed.", mama:"Nesting instinct often peaks. Your body is ready.", tip:"Rest. Stay home if possible. Baby could come any day."},
-  {w:39, size:"mini watermelon", dev:"Brain still developing rapidly. Lungs producing surfactant for first breath.", mama:"You may lose your mucus plug — labour could be soon!", tip:"Stay calm, stay hydrated. Time your contractions when they start."},
-  {w:40, size:"pumpkin", dev:"Due date! Baby is fully developed and ready to meet you. 🍼", mama:"If no labour yet — don't panic. 40% of babies arrive after due date.", tip:"Stay positive. Your baby will come. You've got this, Mama. 💚"},
+  {w:39, size:"mini watermelon", dev:"Brain still developing rapidly. Lungs producing surfactant for first breath.", mama:"You may lose your mucus plug - labour could be soon!", tip:"Stay calm, stay hydrated. Time your contractions when they start."},
+  {w:40, size:"pumpkin", dev:"Due date! Baby is fully developed and ready to meet you. ", mama:"If no labour yet - don't panic. 40% of babies arrive after due date.", tip:"Stay positive. Your baby will come. You've got this, Mama. "},
 ];;
-  AW_LOCAL.filter((_,i) => [3,7,11,15,19,23,27,31,35,39].includes(i)).forEach(w => {
+  AW_LOCAL.forEach(w => {
     bl('Week ' + w.w + ' (' + cl(w.size) + '): ' + cl(w.dev));
   });
 
@@ -1133,8 +1136,7 @@ function buildPDF(name, week, weeksLeft, daysLeft, tri, triKey, due, cur, nxt, b
   y += 3;
   hdr('Monitor and mention to your doctor');
   WARN_W_DATA.forEach(w => bl(w));
-  y += 3;
-  np(); // Force new page so "What IS normal" stays together
+  np();
   hdr('What IS normal');
   ['Mild nausea and fatigue (1st trimester)','Occasional mild cramping as uterus stretches','Braxton Hicks contractions (painless, irregular)','Light spotting after sex - very common','Round ligament pain on sides of belly','Mild swelling in feet at end of day'].forEach(w => bl(w));
   y += 3;

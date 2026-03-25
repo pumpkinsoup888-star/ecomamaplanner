@@ -569,7 +569,8 @@ function selPlan(p) {
 }
 
 function generatePlan() {
-  const name = document.getElementById('mama-name').value || 'Mama';
+  const rawName = document.getElementById('mama-name').value.trim() || 'Mama';
+  const name = rawName.charAt(0).toUpperCase() + rawName.slice(1);
   const dueVal = document.getElementById('due-date').value;
   if (!dueVal) { alert('Please enter your due date to generate your plan!'); return; }
 
@@ -1027,7 +1028,7 @@ function buildPDF(name, week, weeksLeft, daysLeft, tri, triKey, due, cur, nxt, b
     doc.text(s.sub, x+20, 175, {align:'center'});
   });
   doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(184,212,187);
-  doc.text('Generated ' + new Date().toLocaleDateString('en-AU') + '  -  ecomamaplanner.com', m, 290);
+  doc.text('Generated ' + new Date().toLocaleDateString('en-AU') + '  |  ecomamaplanner.com  |  Free eco-friendly pregnancy planner', m, 290);
 
   // PAGE 2 - OVERVIEW
   np();
@@ -1133,8 +1134,12 @@ function buildPDF(name, week, weeksLeft, daysLeft, tri, triKey, due, cur, nxt, b
   hdr('Monitor and mention to your doctor');
   WARN_W_DATA.forEach(w => bl(w));
   y += 3;
+  np(); // Force new page so "What IS normal" stays together
   hdr('What IS normal');
   ['Mild nausea and fatigue (1st trimester)','Occasional mild cramping as uterus stretches','Braxton Hicks contractions (painless, irregular)','Light spotting after sex - very common','Round ligament pain on sides of belly','Mild swelling in feet at end of day'].forEach(w => bl(w));
+  y += 3;
+  hdr('Support and resources');
+  ['PANDA (Perinatal Anxiety and Depression Australia) - 1300 726 306','Beyond Blue - 1300 22 4636','Midwife or OB - your first point of contact for any concern','Emergency - call 000 (Australia) or 911 (USA) for emergencies'].forEach(w => bl(w));
 
   // PAGE 6 - ECO & SOLAR
   np();
@@ -1169,7 +1174,7 @@ function buildPDF(name, week, weeksLeft, daysLeft, tri, triKey, due, cur, nxt, b
   y += 3;
   const hospList = HOSP_DATA[birthPref] || HOSP_DATA['hospital'];
   const hospTitle = birthPref==='home'?'Home Birth Kit':birthPref==='center'?'Birth Centre Bag':'Hospital Bag';
-  hdr(hospTitle + ' checklist');
+  hdr(hospTitle + ' checklist - personalised for ' + (birthPref==='home'?'home birth':birthPref==='center'?'birth centre':'hospital birth'));
   hospList.forEach(i => bl(i));
   y += 3;
   hdr('When to go to hospital - 5-1-1 rule');

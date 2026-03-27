@@ -117,9 +117,8 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 <div class="ad-bar">ADVERTISEMENT — Google AdSense 728×90 leaderboard</div>
 
 <div class="blog-hero">
-  <div class="blog-hero-badge">AI-powered pregnancy blog</div>
   <h1>Eco pregnancy &<br><em>wellness insights</em></h1>
-  <p>Expert articles on eco-conscious pregnancy, mental wellness, sustainable baby living, and everything in between — written by AI, curated for you.</p>
+  <p>Practical articles on eco-conscious pregnancy, natural wellness, sustainable baby living, and everything in between.</p>
   <div class="topic-pills">
     <button class="topic-pill active" onclick="filterTopic('all',this)">All articles</button>
     <button class="topic-pill" onclick="filterTopic('eco',this)">🌿 Eco pregnancy</button>
@@ -132,8 +131,113 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 <div class="blog-layout">
   <div class="blog-main">
 
-    <!-- AI GENERATOR -->
-    
+    <!-- POSTS -->
+    <div class="posts-header">
+      <h2>Recent articles</h2>
+    </div>
+    <div class="posts-grid" id="posts-grid">
+
+      <div class="post-card" data-topic="eco" onclick="window.location='blog-eco-pregnancy-tips-by-trimester.html'">
+        <div class="post-card-img" style="background:var(--sage-pale)">🌿</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Eco Pregnancy</div>
+          <div class="post-card-title">Eco Pregnancy Tips by Trimester</div>
+          <div class="post-card-excerpt">18 simple, natural ways to nurture yourself and your baby across all three trimesters — from organic vitamins to cloth nappies.</div>
+          <div class="post-card-footer"><span class="post-card-read">7 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="eco" onclick="window.location='blog-eco-swaps.html'">
+        <div class="post-card-img" style="background:var(--sage-pale)">♻️</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Eco Pregnancy</div>
+          <div class="post-card-title">10 Eco-Friendly Swaps Every Expecting Mama Should Make</div>
+          <div class="post-card-excerpt">Small changes before baby arrives can save thousands of nappies, bottles, and plastic toys from landfill — without breaking the budget.</div>
+          <div class="post-card-footer"><span class="post-card-read">5 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="mental" onclick="window.location='blog-pregnancy-anxiety.html'">
+        <div class="post-card-img" style="background:#F0EBF8">🧘</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Mental Wellness</div>
+          <div class="post-card-title">Managing Pregnancy Anxiety Naturally</div>
+          <div class="post-card-excerpt">Feeling anxious during pregnancy is extremely common. Here are the gentle, natural strategies that actually work for expecting mamas.</div>
+          <div class="post-card-footer"><span class="post-card-read">6 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="eco" onclick="window.location='blog-cloth-nappies.html'">
+        <div class="post-card-img" style="background:var(--sage-pale)">👶</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Eco Pregnancy</div>
+          <div class="post-card-title">The Complete Guide to Cloth Nappies</div>
+          <div class="post-card-excerpt">Cloth nappies save $3,000–$5,000 per child and keep thousands of disposables out of landfill. Here's everything you need to know.</div>
+          <div class="post-card-footer"><span class="post-card-read">7 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="mental" onclick="window.location='blog-postnatal-depression.html'">
+        <div class="post-card-img" style="background:#FFF0F0">💚</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Mental Wellness</div>
+          <div class="post-card-title">Understanding Postnatal Depression</div>
+          <div class="post-card-excerpt">Up to 1 in 5 mamas experience PND. Knowing the signs and how to get support early makes all the difference for your recovery.</div>
+          <div class="post-card-footer"><span class="post-card-read">6 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="solar" onclick="window.location='blog-solar-nursery.html'">
+        <div class="post-card-img" style="background:#FFFBEA">☀️</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Solar Nursery</div>
+          <div class="post-card-title">Solar-Powered Nursery Products That Save You Money</div>
+          <div class="post-card-excerpt">Solar night lights, fans, and chargers that run entirely on sunlight — zero electricity cost and no cords near baby.</div>
+          <div class="post-card-footer"><span class="post-card-read">5 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="budget" onclick="window.location='blog-save-on-baby-costs.html'">
+        <div class="post-card-img" style="background:#F0FFF4">💰</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Budget Tips</div>
+          <div class="post-card-title">How to Save $5,000 on Baby Costs with Eco Alternatives</div>
+          <div class="post-card-excerpt">Eco-friendly choices aren't just better for the planet — they're often dramatically cheaper long-term. Here's how to save big.</div>
+          <div class="post-card-footer"><span class="post-card-read">5 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="eco" onclick="window.location='blog-non-toxic-nursery.html'">
+        <div class="post-card-img" style="background:var(--sage-pale)">🏡</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Eco Pregnancy</div>
+          <div class="post-card-title">How to Set Up a Non-Toxic Nursery on a Budget</div>
+          <div class="post-card-excerpt">Low-VOC paints, organic mattresses, and solid wood furniture — creating a safe, beautiful nursery without harmful chemicals.</div>
+          <div class="post-card-footer"><span class="post-card-read">6 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="mental" onclick="window.location='blog-birth-plan.html'">
+        <div class="post-card-img" style="background:#F0EBF8">📋</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Mental Wellness</div>
+          <div class="post-card-title">How to Write a Natural Birth Plan (Free Template)</div>
+          <div class="post-card-excerpt">A birth plan helps you communicate your wishes to your care team. Here's how to write one that's clear, calm, and flexible.</div>
+          <div class="post-card-footer"><span class="post-card-read">5 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-topic="eco" onclick="window.location='blog-organic-nutrition.html'">
+        <div class="post-card-img" style="background:var(--sage-pale)">🥗</div>
+        <div class="post-card-body">
+          <div class="post-card-cat">Eco Pregnancy</div>
+          <div class="post-card-title">Organic Pregnancy Nutrition: What to Eat Each Trimester</div>
+          <div class="post-card-excerpt">A trimester-by-trimester guide to organic, whole-food nutrition that nourishes both you and your growing baby.</div>
+          <div class="post-card-footer"><span class="post-card-read">8 min read</span><span class="post-card-btn">Read article →</span></div>
+        </div>
+      </div>
+
+    </div>
 
     <div class="ad-inline">Google AdSense — 728×90 Mid-Content Ad Placement</div>
 

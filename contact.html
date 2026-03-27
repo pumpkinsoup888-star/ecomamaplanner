@@ -125,14 +125,14 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       <div class="info-icon">📧</div>
       <div>
         <h4>Email us</h4>
-        <p><a href="mailto:hello@ecomamaplanner.com">hello@ecomamaplanner.com</a><br>We reply within 24–48 hours.</p>
+        <p><a href="mailto:conversations.you.me@gmail.com">conversations.you.me@gmail.com</a><br>We reply within 24–48 hours.</p>
       </div>
     </div>
     <div class="info-item">
       <div class="info-icon">🌿</div>
       <div>
         <h4>Eco product partnerships</h4>
-        <p>Interested in featuring your eco-friendly or solar product on our site? We'd love to collaborate.<br><a href="mailto:partnerships@ecomamaplanner.com">partnerships@ecomamaplanner.com</a></p>
+        <p>Interested in featuring your eco-friendly or solar product on our site? We'd love to collaborate.<br><a href="mailto:conversations.you.me@gmail.com">conversations.you.me@gmail.com</a></p>
       </div>
     </div>
     <div class="info-item">
@@ -251,12 +251,32 @@ function sendMessage() {
   if (!topic) { alert('Please choose what your message is about.'); return; }
   if (msg.length < 10) { alert('Please write a message of at least 10 characters.'); return; }
 
-  // In production: connect to Formspree, EmailJS, or your own backend here
-  // e.g. fetch('https://formspree.io/f/YOUR_ID', { method:'POST', body: formData })
+  const btn = document.querySelector('.btn-send');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
 
-  document.getElementById('reply-email').textContent = email;
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('success-msg').classList.add('show');
+  fetch('https://formspree.io/f/xlgodojz', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ name, email, topic, message: msg })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      document.getElementById('reply-email').textContent = email;
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('success-msg').classList.add('show');
+    } else {
+      alert('Something went wrong. Please email us directly at conversations.you.me@gmail.com');
+      btn.textContent = 'Send message →';
+      btn.disabled = false;
+    }
+  })
+  .catch(() => {
+    alert('Something went wrong. Please email us directly at conversations.you.me@gmail.com');
+    btn.textContent = 'Send message →';
+    btn.disabled = false;
+  });
 }
 </script>
 </body>

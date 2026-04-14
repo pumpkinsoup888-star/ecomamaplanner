@@ -1,0 +1,30 @@
+# EcoMamaPlanner
+
+> Free personalized eco-friendly pregnancy planner covering all 40 weeks — baby development, nutrition, exercise, mental wellness, eco nursery guide, and hospital bag checklist. Completely free, no sign-up required.
+
+## Key Pages
+
+- [Home & Free Pregnancy Planner](https://ecomamaplanner.com/): Generate a free personalized week-by-week pregnancy plan as a downloadable PDF
+- [Pregnancy Journal](https://ecomamaplanner.com/pregnancy-journal.html): Free printable pregnancy journal with weekly reflections, letters to baby, milestone tracker, and self-care tracker
+- [About](https://ecomamaplanner.com/about.html): About EcoMamaPlanner and our mission
+- [Blog](https://ecomamaplanner.com/blog.html): All pregnancy and wellness articles
+- [Contact](https://ecomamaplanner.com/contact.html): Contact EcoMamaPlanner
+- [Privacy Policy](https://ecomamaplanner.com/privacy.html): How we handle your data
+
+## Blog Articles
+
+- [Pregnancy Sleep Tips](https://ecomamaplanner.com/blog-pregnancy-sleep-tips.html): Evidence-backed strategies for better sleep in every trimester
+- [Eco Pregnancy Tips by Trimester](https://ecomamaplanner.com/blog-eco-pregnancy-tips-by-trimester.html): Natural ways to nurture yourself and your baby across all three trimesters
+- [Managing Pregnancy Anxiety Naturally](https://ecomamaplanner.com/blog-pregnancy-anxiety.html): Gentle strategies to calm anxiety during pregnancy without medication
+- [Organic Pregnancy Nutrition by Trimester](https://ecomamaplanner.com/blog-organic-nutrition.html): What to eat each trimester for a nourished pregnancy
+- [The Complete Guide to Cloth Nappies](https://ecomamaplanner.com/blog-cloth-nappies.html): How to start with cloth nappies and save thousands
+- [10 Eco-Friendly Swaps Every Expecting Mama Should Make](https://ecomamaplanner.com/blog-eco-swaps.html): Simple swaps for a healthier pregnancy and home
+- [How to Set Up a Non-Toxic Nursery](https://ecomamaplanner.com/blog-non-toxic-nursery.html): Safe materials and products for your baby's nursery
+- [How to Write a Natural Birth Plan](https://ecomamaplanner.com/blog-birth-plan.html): A complete guide to writing your birth preferences
+- [Understanding Postnatal Depression](https://ecomamaplanner.com/blog-postnatal-depression.html): Signs, support and how to get help for PND
+- [Solar-Powered Nursery Products](https://ecomamaplanner.com/blog-solar-nursery.html): Eco-friendly solar products that save electricity
+- [How to Save $5,000 on Baby Costs](https://ecomamaplanner.com/blog-save-on-baby-costs.html): Eco-friendly choices that dramatically reduce baby expenses
+- [The Complete Pregnancy Exercise Guide](https://ecomamaplanner.com/blog-pregnancy-exercise-guide.html): Safe workouts for every trimester
+- [The Eco Mama Baby Registry Checklist](https://ecomamaplanner.com/blog-baby-registry-checklist.html): What you actually need for a new baby
+- [First Trimester Checklist](https://ecomamaplanner.com/blog-first-trimester-checklist.html): Everything to do in weeks 1-12
+- [Natural Pregnancy Skincare Guide](https://ecomamaplanner.com/blog-natural-pregnancy-skincare.html): Safe ingredients and what to avoid during pregnancy

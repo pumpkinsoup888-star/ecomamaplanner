@@ -69,6 +69,18 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
 .footer-links{display:flex;gap:22px;}.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:rgba(255,255,255,.8);}
 @media(max-width:768px){nav{padding:14px 18px;}.nav-links{display:none;}.article-hero{padding:48px 18px 36px;}.article-layout{grid-template-columns:1fr;padding:32px 18px;gap:0;}.blog-sidebar{display:none;}.related-grid{grid-template-columns:1fr;}footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}}
+
+/* ── Article Images ── */
+.article-hero-img{width:100%;max-height:460px;overflow:hidden;line-height:0;}
+.article-hero-img img{width:100%;height:460px;object-fit:cover;display:block;}
+.article-figure{margin:32px 0;border-radius:16px;overflow:hidden;line-height:0;}
+.article-figure img{width:100%;height:340px;object-fit:cover;display:block;}
+.article-figure figcaption{font-size:13px;color:var(--text-light);padding:10px 14px;background:var(--sage-pale);font-style:italic;line-height:1.5;}
+@media(max-width:768px){
+  .article-hero-img img{height:260px;}
+  .article-figure img{height:220px;}
+}
+
 </style>
 </head>
 <body>
@@ -113,6 +125,12 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 <p>Babies are particularly vulnerable to indoor air pollutants because they breathe more rapidly than adults relative to their body weight, and their developing organ systems are less able to detoxify and eliminate harmful substances. The precautionary principle strongly supports minimising chemical exposure in the nursery.</p>
 
 <h2>Start with <em>the paint</em></h2>
+
+<figure class="article-figure">
+  <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=900&auto=format&fit=crop&q=80" alt="Natural and non-toxic baby products and nursery items" loading="lazy">
+  <figcaption>Choosing non-toxic materials protects your baby from harmful chemicals</figcaption>
+</figure>
+
 <p>Conventional paint contains high levels of volatile organic compounds (VOCs) that off-gas into the air for months — sometimes years — after application. These airborne chemicals include benzene, toluene, formaldehyde, and xylene, which are particularly harmful to developing lungs, nervous systems, and hormonal function.</p>
 <p>Always choose a <strong>zero-VOC or low-VOC paint</strong> for the nursery. Major paint brands including Sherwin-Williams, Benjamin Moore, and Behr all offer zero-VOC lines, typically at little or no price premium over their conventional equivalents. Paint the room at least 8-12 weeks before your due date, keep windows open during and after painting for maximum ventilation, and use a HEPA air purifier in the room for the first few weeks after painting.</p>
 <p>If you're moving into a home with existing conventional paint, the practical option is to simply ventilate the room well and avoid repainting immediately before baby arrives. Well-cured conventional paint that's been on the walls for years poses much less risk than freshly applied paint.</p>

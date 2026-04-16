@@ -69,6 +69,18 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
 .footer-links{display:flex;gap:22px;}.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:rgba(255,255,255,.8);}
 @media(max-width:768px){nav{padding:14px 18px;}.nav-links{display:none;}.article-hero{padding:48px 18px 36px;}.article-layout{grid-template-columns:1fr;padding:32px 18px;gap:0;}.blog-sidebar{display:none;}.related-grid{grid-template-columns:1fr;}footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}}
+
+/* ── Article Images ── */
+.article-hero-img{width:100%;max-height:460px;overflow:hidden;line-height:0;}
+.article-hero-img img{width:100%;height:460px;object-fit:cover;display:block;}
+.article-figure{margin:32px 0;border-radius:16px;overflow:hidden;line-height:0;}
+.article-figure img{width:100%;height:340px;object-fit:cover;display:block;}
+.article-figure figcaption{font-size:13px;color:var(--text-light);padding:10px 14px;background:var(--sage-pale);font-style:italic;line-height:1.5;}
+@media(max-width:768px){
+  .article-hero-img img{height:260px;}
+  .article-figure img{height:220px;}
+}
+
 </style>
 </head>
 <body>
@@ -113,6 +125,12 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 <p>Second-hand cloth nappies are also widely available in excellent condition — babies outgrow nappies quickly, and many families sell their stash barely used. Buying second-hand can reduce your upfront investment to $100–$200 while still building a complete functional stash.</p>
 
 <h2>The environmental case</h2>
+
+<figure class="article-figure">
+  <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=900&auto=format&fit=crop&q=80" alt="Baby essentials and natural fabric items laid out neatly" loading="lazy">
+  <figcaption>Modern cloth nappies are soft, easy to use, and far better for the planet</figcaption>
+</figure>
+
 <p>Beyond the financial savings, the environmental impact of cloth nappies is significant. The manufacture of disposable nappies consumes approximately 3.5 billion litres of oil and over 250,000 trees annually in the United States alone. Each disposable nappy contains petroleum-derived plastics that will outlast everyone alive today in landfill.</p>
 <p>Cloth nappies, while not without environmental impact (they require water and energy to wash), have a substantially lower lifetime footprint — particularly when line-dried in the sun rather than machine-dried, and when reused for multiple children.</p>
 

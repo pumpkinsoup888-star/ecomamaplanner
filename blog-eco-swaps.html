@@ -69,6 +69,18 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
 .footer-links{display:flex;gap:22px;}.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:rgba(255,255,255,.8);}
 @media(max-width:768px){nav{padding:14px 18px;}.nav-links{display:none;}.article-hero{padding:48px 18px 36px;}.article-layout{grid-template-columns:1fr;padding:32px 18px;gap:0;}.blog-sidebar{display:none;}.related-grid{grid-template-columns:1fr;}footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}}
+
+/* ── Article Images ── */
+.article-hero-img{width:100%;max-height:460px;overflow:hidden;line-height:0;}
+.article-hero-img img{width:100%;height:460px;object-fit:cover;display:block;}
+.article-figure{margin:32px 0;border-radius:16px;overflow:hidden;line-height:0;}
+.article-figure img{width:100%;height:340px;object-fit:cover;display:block;}
+.article-figure figcaption{font-size:13px;color:var(--text-light);padding:10px 14px;background:var(--sage-pale);font-style:italic;line-height:1.5;}
+@media(max-width:768px){
+  .article-hero-img img{height:260px;}
+  .article-figure img{height:220px;}
+}
+
 </style>
 </head>
 <body>
@@ -113,6 +125,12 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 <p>The good news is that you don't need a perfect, all-organic household to make a meaningful difference. Research shows that even reducing exposure to the most common problematic chemicals has measurable health benefits. These 10 swaps target the highest-impact areas.</p>
 
 <h2>In the <em>bathroom</em></h2>
+
+<figure class="article-figure">
+  <img src="https://images.unsplash.com/photo-1556909212-d5a605ed5d98?w=900&auto=format&fit=crop&q=80" alt="Zero-waste natural cleaning and personal care items" loading="lazy">
+  <figcaption>Simple swaps to natural alternatives reduce toxins and packaging waste</figcaption>
+</figure>
+
 
 <h3>1. Swap your body wash for a natural alternative</h3>
 <p>Conventional body washes are often loaded with synthetic fragrance, parabens, sulphates, and phthalates. During pregnancy, your skin absorbs substances more readily than usual due to increased blood flow to the skin's surface. Switch to an <strong>organic castile soap</strong> or a fragrance-free natural body wash. Brands like Dr. Bronner's, Weleda, and Earth Mama are gentle, effective, and widely available.</p>

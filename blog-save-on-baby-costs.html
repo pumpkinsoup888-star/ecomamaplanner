@@ -69,6 +69,18 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
 .footer-links{display:flex;gap:22px;}.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:rgba(255,255,255,.8);}
 @media(max-width:768px){nav{padding:14px 18px;}.nav-links{display:none;}.article-hero{padding:48px 18px 36px;}.article-layout{grid-template-columns:1fr;padding:32px 18px;gap:0;}.blog-sidebar{display:none;}.related-grid{grid-template-columns:1fr;}footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}}
+
+/* ── Article Images ── */
+.article-hero-img{width:100%;max-height:460px;overflow:hidden;line-height:0;}
+.article-hero-img img{width:100%;height:460px;object-fit:cover;display:block;}
+.article-figure{margin:32px 0;border-radius:16px;overflow:hidden;line-height:0;}
+.article-figure img{width:100%;height:340px;object-fit:cover;display:block;}
+.article-figure figcaption{font-size:13px;color:var(--text-light);padding:10px 14px;background:var(--sage-pale);font-style:italic;line-height:1.5;}
+@media(max-width:768px){
+  .article-hero-img img{height:260px;}
+  .article-figure img{height:220px;}
+}
+
 </style>
 </head>
 <body>
@@ -113,6 +125,12 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 <p>The average American family spends approximately $13,000 in the first year of their baby's life. With intentional, eco-friendly choices, this figure can be dramatically reduced — without compromising on your baby's health, safety, or happiness.</p>
 
 <h2>Nappies: <em>save $2,500–$4,000</em></h2>
+
+<figure class="article-figure">
+  <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=900&auto=format&fit=crop&q=80" alt="Smart shopping and budgeting for a new baby" loading="lazy">
+  <figcaption>With smart planning, you can give your baby everything they need without debt</figcaption>
+</figure>
+
 <p>This is the single biggest saving available to eco-minded parents. A full cloth nappy stash costs $300–$600 upfront for 20-25 modern cloth nappies. Disposable nappies, by contrast, cost an average of $2,500–$4,000 per child over their nappy-wearing years — and that's assuming your child is fully toilet trained by age 3, which many are not.</p>
 <p>If you use the same cloth nappy stash for a second child, your savings double to $5,000-$8,000 across both children. Second-hand cloth nappies are widely available in excellent condition for $100-$200 for a complete stash, reducing your upfront investment even further.</p>
 <p>Even using cloth nappies just part-time — at home during the day, for example — will save you hundreds of dollars annually while significantly reducing your environmental impact.</p>

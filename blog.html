@@ -53,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;}
 .post-card{background:var(--warm);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .2s;}
 .post-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(45,90,53,.1);border-color:var(--sage-light);}
-.post-card-img{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;}
+.post-card-img{height:160px;overflow:hidden;}.post-card-img img{width:100%;height:160px;object-fit:cover;display:block;}.post-card-img-emoji{height:160px;display:flex;align-items:center;justify-content:center;font-size:40px;}
 .post-card-body{padding:18px;}
 .post-card-cat{font-size:10px;font-weight:500;color:var(--sage);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
 .post-card-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--forest-dark);line-height:1.25;margin-bottom:8px;}
@@ -144,7 +144,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
     <div class="posts-grid" id="posts-grid">
 
       <div class="post-card" data-topic="fitness" onclick="window.location='blog-pregnancy-exercise-guide.html'">
-        <div class="post-card-img" style="background:#EEF5EF">🏋️</div>
+        <div class="post-card-img"><img src="images/blog-exercise-hero.jpg" alt="Pregnancy exercise"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🏋️ Fitness & Wellness</div>
           <div class="post-card-title">The Complete Pregnancy Exercise Guide</div>
@@ -154,7 +154,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="planning" onclick="window.location='blog-baby-registry-checklist.html'">
-        <div class="post-card-img" style="background:#F0EBF8">🛍️</div>
+        <div class="post-card-img"><img src="images/blog-registry-hero.jpg" alt="Baby registry"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🛍️ Baby Planning</div>
           <div class="post-card-title">The Eco Mama Baby Registry Checklist</div>
@@ -164,7 +164,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="planning" onclick="window.location='blog-first-trimester-checklist.html'">
-        <div class="post-card-img" style="background:#EEF5EF">✅</div>
+        <div class="post-card-img"><img src="images/blog-first-trimester-hero.jpg" alt="First trimester"></div>
         <div class="post-card-body">
           <div class="post-card-cat">✅ Pregnancy Planning</div>
           <div class="post-card-title">First Trimester Checklist — Everything to Do in Weeks 1-12</div>
@@ -174,7 +174,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="beauty" onclick="window.location='blog-natural-pregnancy-skincare.html'">
-        <div class="post-card-img" style="background:#FFF0F5">🌿</div>
+        <div class="post-card-img"><img src="images/blog-skincare-hero.jpg" alt="Natural skincare"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🌿 Natural Beauty</div>
           <div class="post-card-title">Natural Pregnancy Skincare — Safe Ingredients and What to Avoid</div>
@@ -184,7 +184,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="fitness" onclick="window.location='blog-pregnancy-sleep-tips.html'">
-        <div class="post-card-img" style="background:#EEF5EF">😴</div>
+        <div class="post-card-img"><img src="images/blog-sleep-hero.jpg" alt="Pregnancy sleep"></div>
         <div class="post-card-body">
           <div class="post-card-cat">😴 Sleep & Wellness</div>
           <div class="post-card-title">Pregnancy Sleep Tips — How to Actually Rest</div>
@@ -194,7 +194,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="eco" onclick="window.location='blog-eco-pregnancy-tips-by-trimester.html'">
-        <div class="post-card-img" style="background:var(--sage-pale)">🌿</div>
+        <div class="post-card-img"><img src="images/blog-eco-tips-hero.jpg" alt="Eco pregnancy tips"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🌿 Eco Pregnancy</div>
           <div class="post-card-title">Eco Pregnancy Tips by Trimester</div>
@@ -204,7 +204,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="eco" onclick="window.location='blog-eco-swaps.html'">
-        <div class="post-card-img" style="background:var(--sage-pale)">♻️</div>
+        <div class="post-card-img"><img src="images/blog-eco-swaps-hero.jpg" alt="Eco swaps"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🌿 Eco Pregnancy</div>
           <div class="post-card-title">10 Eco-Friendly Swaps Every Expecting Mama Should Make</div>
@@ -214,7 +214,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="mental" onclick="window.location='blog-pregnancy-anxiety.html'">
-        <div class="post-card-img" style="background:#F0EBF8">🧘</div>
+        <div class="post-card-img"><img src="images/blog-anxiety-hero.jpg" alt="Pregnancy anxiety"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🧠 Mental Wellness</div>
           <div class="post-card-title">Managing Pregnancy Anxiety Naturally</div>
@@ -224,7 +224,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="eco" onclick="window.location='blog-cloth-nappies.html'">
-        <div class="post-card-img" style="background:var(--sage-pale)">👶</div>
+        <div class="post-card-img"><img src="images/blog-cloth-nappies-hero.jpg" alt="Cloth nappies"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🌿 Eco Pregnancy</div>
           <div class="post-card-title">The Complete Guide to Cloth Nappies</div>
@@ -234,7 +234,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="mental" onclick="window.location='blog-postnatal-depression.html'">
-        <div class="post-card-img" style="background:#FFF0F0">💚</div>
+        <div class="post-card-img"><img src="images/blog-postnatal-hero.jpg" alt="Postnatal depression"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🧠 Mental Wellness</div>
           <div class="post-card-title">Understanding Postnatal Depression</div>
@@ -244,7 +244,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="solar" onclick="window.location='blog-solar-nursery.html'">
-        <div class="post-card-img" style="background:#FFFBEA">☀️</div>
+        <div class="post-card-img"><img src="images/blog-solar-nursery-hero.jpg" alt="Solar nursery"></div>
         <div class="post-card-body">
           <div class="post-card-cat">☀️ Solar Nursery</div>
           <div class="post-card-title">Solar-Powered Nursery Products That Save You Money</div>
@@ -254,7 +254,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="budget" onclick="window.location='blog-save-on-baby-costs.html'">
-        <div class="post-card-img" style="background:#F0FFF4">💰</div>
+        <div class="post-card-img"><img src="images/blog-save-costs-hero.jpg" alt="Save on baby costs"></div>
         <div class="post-card-body">
           <div class="post-card-cat">💰 Budget Tips</div>
           <div class="post-card-title">How to Save $5,000 on Baby Costs with Eco Alternatives</div>
@@ -264,7 +264,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="nursery" onclick="window.location='blog-non-toxic-nursery.html'">
-        <div class="post-card-img" style="background:var(--sage-pale)">🏡</div>
+        <div class="post-card-img"><img src="images/blog-non-toxic-hero.jpg" alt="Non toxic nursery"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🌿 Eco Pregnancy</div>
           <div class="post-card-title">How to Set Up a Non-Toxic Nursery on a Budget</div>
@@ -273,8 +273,8 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
         </div>
       </div>
 
-      <div class="post-card" data-topic="planning" onclick="window.location='blog-birth-plan.html'">
-        <div class="post-card-img" style="background:#F0EBF8">📋</div>
+      <div class="post-card" data-topic="mental" onclick="window.location='blog-birth-plan.html'">
+        <div class="post-card-img"><img src="images/blog-birth-plan-hero.jpg" alt="Birth plan"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🧠 Mental Wellness</div>
           <div class="post-card-title">How to Write a Natural Birth Plan (Free Template)</div>
@@ -284,7 +284,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
       </div>
 
       <div class="post-card" data-topic="eco" onclick="window.location='blog-organic-nutrition.html'">
-        <div class="post-card-img" style="background:var(--sage-pale)">🥗</div>
+        <div class="post-card-img"><img src="images/blog-nutrition-hero.jpg" alt="Organic nutrition"></div>
         <div class="post-card-body">
           <div class="post-card-cat">🌿 Eco Pregnancy</div>
           <div class="post-card-title">Organic Pregnancy Nutrition: What to Eat Each Trimester</div>

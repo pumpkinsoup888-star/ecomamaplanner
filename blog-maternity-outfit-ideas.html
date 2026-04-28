@@ -71,9 +71,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* OUTFIT CARDS GRID */
 .outfit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
-.outfit-card{background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:18px;}
+.outfit-card{background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:18px;display:block;text-decoration:none;transition:all .2s;cursor:pointer;}
+.outfit-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(45,90,53,.12);border-color:var(--sage);background:var(--sage-pale);}
 .outfit-card h4{font-size:14px;font-weight:500;color:var(--forest);margin-bottom:6px;}
 .outfit-card p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.6;margin-bottom:0;}
+.outfit-card .shop-tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:500;color:var(--sage);letter-spacing:.04em;text-transform:uppercase;}
+.outfit-card:hover .shop-tag{color:var(--forest);}
 
 /* FABRIC TABLE */
 .fabric-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:13px;}
@@ -210,22 +213,26 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
     <p>In the first trimester, your belly is still mostly hidden — but you may already feel bloated and uncomfortable in your regular waistbands. This is the perfect time to lean into stretchy, forgiving pieces that don't scream "maternity" but give you the room you need.</p>
 
     <div class="outfit-grid">
-      <div class="outfit-card">
+      <a class="outfit-card" href="https://www.amazon.com/s?k=flowy+midi+dress+organic+cotton&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🌿 Flowy Midi Dresses</h4>
-        <p>Loose-fitting midi dresses in organic cotton or linen look polished for work or casual outings and need no maternity adaptation at all. <a href="https://www.amazon.com/s?k=flowy+midi+dress+organic+cotton&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
-      <div class="outfit-card">
+        <p>Loose-fitting midi dresses in organic cotton or linen look polished for work or casual outings and need no maternity adaptation at all.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=maternity+wrap+top&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🌿 Wrap Tops & Wide-Leg Pants</h4>
-        <p>A wrap-style top adjusts as you grow and pairs beautifully with wide-leg trousers. You can wear both pieces well into your second trimester. <a href="https://www.amazon.com/s?k=maternity+wrap+top&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
-      <div class="outfit-card">
+        <p>A wrap-style top adjusts as you grow and pairs beautifully with wide-leg trousers. You can wear both pieces well into your second trimester.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=oversized+linen+shirt+women&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🌿 Oversized Linen Button-Down</h4>
-        <p>An oversized linen shirt worn open over a tank top is one of the most versatile and eco-friendly pieces you can invest in early pregnancy. <a href="https://www.amazon.com/s?k=oversized+linen+shirt+women&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
-      <div class="outfit-card">
+        <p>An oversized linen shirt worn open over a tank top is one of the most versatile and eco-friendly pieces you can invest in early pregnancy.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=maternity+high+waisted+leggings&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🌿 High-Waisted Leggings</h4>
-        <p>High-waisted leggings with a soft, foldable waistband are your best friend from week 6 onwards. Look for ones made from recycled fibers. <a href="https://www.amazon.com/s?k=maternity+high+waisted+leggings&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
+        <p>High-waisted leggings with a soft, foldable waistband are your best friend from week 6 onwards. Look for ones made from recycled fibers.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
     </div>
 
     <div class="tip-highlight">
@@ -245,18 +252,21 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
         <h4>✨ Over-Bump Maternity Jeans</h4>
         <p>A good pair of over-bump maternity jeans is worth every penny. Look for secondhand options on ThredUp or Poshmark for an eco-friendly and budget-smart find.</p>
       </div>
-      <div class="outfit-card">
+      <a class="outfit-card" href="https://www.amazon.com/s?k=maternity+wrap+dress&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>✨ Jersey Wrap Dress</h4>
-        <p>A soft jersey wrap dress in an earth tone celebrates your bump beautifully and works from a casual brunch to a baby shower. <a href="https://www.amazon.com/s?k=maternity+wrap+dress&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
-      <div class="outfit-card">
+        <p>A soft jersey wrap dress in an earth tone celebrates your bump beautifully and works from a casual brunch to a baby shower.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=linen+maternity+set&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>✨ Linen Co-ord Set</h4>
-        <p>A matching linen top and wide-leg trouser set looks effortlessly put-together, feels breathable, and is perfect for bump photos. <a href="https://www.amazon.com/s?k=linen+maternity+set&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
-      <div class="outfit-card">
+        <p>A matching linen top and wide-leg trouser set looks effortlessly put-together, feels breathable, and is perfect for bump photos.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=maternity+ruched+top&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>✨ Ruched Side Tops</h4>
-        <p>Ruched side tops in organic cotton or bamboo grow with your bump and stay flattering from month four all the way to your due date. <a href="https://www.amazon.com/s?k=maternity+ruched+top&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
+        <p>Ruched side tops in organic cotton or bamboo grow with your bump and stay flattering from month four all the way to your due date.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
     </div>
 
     <div class="tip-highlight">
@@ -279,22 +289,26 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
     <p>Comfort is everything in the third trimester. At this stage, your only outfit criteria should be: does this feel good on my body right now? That said, comfort and style are absolutely not mutually exclusive — here are the pieces that deliver both.</p>
 
     <div class="outfit-grid">
-      <div class="outfit-card">
+      <a class="outfit-card" href="https://www.amazon.com/s?k=maternity+maxi+dress+stretchy&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🍃 Stretchy Maxi Dress</h4>
         <p>A stretchy maxi dress is the ultimate third trimester uniform — no waistband pressure, easy to move in, and works from the farmers market to a dinner out.</p>
-      </div>
-      <div class="outfit-card">
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=oversized+linen+shirt+dress+women&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🍃 Oversized Linen as a Dress</h4>
-        <p>An oversized linen shirt worn as a mini dress with sandals is cool, breathable, and effortlessly stylish in the final weeks. <a href="https://www.amazon.com/s?k=oversized+linen+shirt+dress+women&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
-      <div class="outfit-card">
+        <p>An oversized linen shirt worn as a mini dress with sandals is cool, breathable, and effortlessly stylish in the final weeks.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=bamboo+maternity+loungewear+set&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🍃 Soft Bamboo Knit Sets</h4>
-        <p>A matching bamboo or organic cotton knit set keeps you comfortable at home without feeling like you're in pajamas all day. <a href="https://www.amazon.com/s?k=bamboo+maternity+loungewear+set&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
-      <div class="outfit-card">
+        <p>A matching bamboo or organic cotton knit set keeps you comfortable at home without feeling like you're in pajamas all day.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
+      <a class="outfit-card" href="https://www.amazon.com/s?k=supportive+slip+on+shoes+women+pregnancy&tag=ecomamaplanne-20" target="_blank" rel="nofollow">
         <h4>🍃 Supportive Slip-On Shoes</h4>
-        <p>Footwear matters enormously in trimester three. Slip-on sneakers or supportive sandals reduce swelling discomfort significantly. <a href="https://www.amazon.com/s?k=supportive+slip+on+shoes+women+pregnancy&tag=ecomamaplanne-20" target="_blank" rel="nofollow" style="color:var(--forest);font-weight:500;">→ Shop on Amazon</a></p>
-      </div>
+        <p>Footwear matters enormously in trimester three. Slip-on sneakers or supportive sandals reduce swelling discomfort significantly.</p>
+        <span class="shop-tag">Shop on Amazon →</span>
+      </a>
     </div>
 
     <div class="tip-highlight">

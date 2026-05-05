@@ -105,6 +105,10 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
   .hamburger{display:flex;}
   .nav-cta{display:none;}
 }
+
+.float-pinterest{position:fixed;bottom:24px;right:24px;z-index:999;background:#E60023;color:white;border-radius:50px;padding:12px 18px;display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(230,0,35,.4);transition:all .2s;}
+.float-pinterest:hover{background:#C0001D;transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,0,35,.5);}
+@media(max-width:768px){.float-pinterest span{display:none;}.float-pinterest{padding:14px;border-radius:50%;}}
 </style>
 </head>
 <body>
@@ -280,7 +284,7 @@ function toggleMenu(){
 </div>
 <div class="share-bar">
   <span class="share-label">📌 Share this article:</span>
-  <a class="share-btn" href="https://pinterest.com/pin/create/button/?url=https://ecomamaplanner.com/blog-pregnancy-exercise-guide.html" target="_blank">Pinterest</a>
+  <a class="share-btn" href="https://pinterest.com/pin/create/button/?url=https://ecomamaplanner.com/blog-pregnancy-exercise-guide.html" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:5px;"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>Save to Pinterest</a>
   <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://ecomamaplanner.com/blog-pregnancy-exercise-guide.html" target="_blank">Facebook</a>
   <a class="share-btn" href="https://twitter.com/intent/tweet?url=https://ecomamaplanner.com/blog-pregnancy-exercise-guide.html" target="_blank">Twitter</a>
 </div>
@@ -316,6 +320,12 @@ hs.forEach((h,i)=>{
 });
 </script>
 </div>
+
+<!-- Floating Pinterest Button -->
+<a href="https://pinterest.com/pin/create/button/?url=https://ecomamaplanner.com/blog-pregnancy-exercise-guide.html" target="_blank" rel="nofollow" class="float-pinterest" aria-label="Save to Pinterest">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+  <span>Save</span>
+</a>
 <footer>
   <div class="footer-logo"><img src="logo.png" alt="EcoMamaPlanner" style="height:28px;width:auto;vertical-align:middle;margin-right:8px;filter:brightness(0) invert(1) opacity(0.8);">EcoMamaPlanner</div>
   <div class="footer-links">

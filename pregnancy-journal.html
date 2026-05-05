@@ -22,7 +22,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--forest);text-decoration:none;}.logo span{color:var(--sage);}.logo img{height:36px;width:auto;display:inline-block;vertical-align:middle;margin-right:8px;}
 .nav-links{display:flex;gap:28px;list-style:none;}.nav-links a{font-size:13px;color:var(--text-mid);text-decoration:none;transition:color .2s;}.nav-links a:hover{color:var(--forest);}
 .nav-cta{background:var(--forest);color:#fff;padding:10px 22px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;}
-.ad-bar{margin-top:80px;background:#f0f0f0;border-bottom:1px solid var(--border);text-align:center;padding:10px;font-size:11px;color:#aaa;}
+.ad-bar{display:none;}
 .hero{padding:72px 48px 60px;background:linear-gradient(135deg,var(--forest-dark),var(--forest));color:white;text-align:center;}
 .hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:40px;font-size:12px;color:rgba(255,255,255,.8);margin-bottom:20px;}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,58px);font-weight:300;line-height:1.1;margin-bottom:18px;}
@@ -60,7 +60,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;}
 .footer-links{display:flex;gap:22px;}.footer-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:rgba(255,255,255,.8);}
-@media(max-width:768px){nav{padding:14px 18px;}.nav-links{display:none;}.hero{padding:56px 18px 40px;}.section{padding:48px 18px;}.prompts-section{padding:48px 18px;}.cta-section{padding:48px 18px;}footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}}
+@media(max-width:768px){
+  .ad-bar{display:none;}nav{padding:14px 18px;}.nav-links{display:none;}.hero{padding:56px 18px 40px;}.section{padding:48px 18px;}.prompts-section{padding:48px 18px;}.cta-section{padding:48px 18px;}footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}}
+
+/* Hamburger menu */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--forest);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(250,248,244,.98);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:20px 24px;z-index:99;flex-direction:column;gap:4px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:15px;color:var(--text-mid);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);font-family:'DM Sans',sans-serif;}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--forest);}
+@media(max-width:768px){
+  .hamburger{display:flex;}
+  .nav-cta{display:none;}
+}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYCKQ6JFES"></script>
 <script>
@@ -81,9 +98,24 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
     <li><a href="about.html">About</a></li>
   </ul>
   <a href="index.html#generator" class="nav-cta">Create my plan →</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="blog.html" onclick="toggleMenu()">📝 Blog</a>
+  <a href="about.html" onclick="toggleMenu()">👋 About</a>
+  <a href="contact.html" onclick="toggleMenu()">✉️ Contact</a>
+</div>
+<script>
+function toggleMenu(){
+  document.querySelector('.hamburger').classList.toggle('open');
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+</script>
 
-<div class="ad-bar">ADVERTISEMENT</div>
+<div class="ad-bar" style="display:none;">ADVERTISEMENT</div>
 
 <div class="hero">
   <div class="hero-badge">📓 Free Pregnancy Journal — No sign-up needed</div>

@@ -42,7 +42,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a:hover{color:var(--forest);}
 .nav-cta{background:var(--forest);color:#fff;padding:10px 22px;border-radius:40px;font-size:13px;font-weight:500;text-decoration:none;}
 
-.ad-bar{margin-top:80px;background:#f0f0f0;border-bottom:1px solid var(--border);text-align:center;padding:10px;font-size:11px;color:#aaa;letter-spacing:.05em;}
+.ad-bar{display:none;}
 
 .article-hero{padding:60px 48px 48px;background:linear-gradient(135deg,#3D1C5A,#7A3D8E);color:white;text-align:center;}
 .breadcrumb{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:18px;}
@@ -127,6 +127,7 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
 .footer-links a:hover{color:rgba(255,255,255,.8);}
 
 @media(max-width:768px){
+  .ad-bar{display:none;}
   nav{padding:14px 18px;}.nav-links{display:none;}
   .article-hero{padding:48px 18px 36px;}
   .article-layout{grid-template-columns:1fr;padding:32px 18px;gap:0;}
@@ -136,6 +137,22 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
   footer{padding:28px 18px;flex-direction:column;align-items:flex-start;}
   .article-hero-img img{height:280px;}
   .article-figure img{height:240px;}
+}
+
+/* Hamburger menu */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--forest);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(250,248,244,.98);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:20px 24px;z-index:99;flex-direction:column;gap:4px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:15px;color:var(--text-mid);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);font-family:'DM Sans',sans-serif;}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--forest);}
+@media(max-width:768px){
+  .hamburger{display:flex;}
+  .nav-cta{display:none;}
 }
 </style>
 </head>
@@ -150,9 +167,24 @@ footer{background:var(--forest-dark);padding:44px 48px;color:rgba(255,255,255,.5
     <li><a href="about.html">About</a></li>
   </ul>
   <a href="index.html#generator" class="nav-cta">Create my plan →</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="blog.html" onclick="toggleMenu()">📝 Blog</a>
+  <a href="about.html" onclick="toggleMenu()">👋 About</a>
+  <a href="contact.html" onclick="toggleMenu()">✉️ Contact</a>
+</div>
+<script>
+function toggleMenu(){
+  document.querySelector('.hamburger').classList.toggle('open');
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+</script>
 
-<div class="ad-bar">ADVERTISEMENT</div>
+<div class="ad-bar" style="display:none;">ADVERTISEMENT</div>
 
 <div class="article-hero">
   <div class="breadcrumb"><a href="index.html">Home</a> › <a href="blog.html">Blog</a> › Mother's Day</div>
